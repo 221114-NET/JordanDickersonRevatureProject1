@@ -1,0 +1,15 @@
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\bin\Debug\net7.0\RepoLayer.deps.json
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\bin\Debug\net7.0\RepoLayer.dll
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\bin\Debug\net7.0\RepoLayer.pdb
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\bin\Debug\net7.0\ModelsLayer.dll
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\bin\Debug\net7.0\ModelsLayer.pdb
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\obj\Debug\net7.0\RepoLayer.csproj.AssemblyReference.cache
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\obj\Debug\net7.0\RepoLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\obj\Debug\net7.0\RepoLayer.AssemblyInfoInputs.cache
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\obj\Debug\net7.0\RepoLayer.AssemblyInfo.cs
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\obj\Debug\net7.0\RepoLayer.csproj.CoreCompileInputs.cache
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\obj\Debug\net7.0\RepoLayer.csproj.CopyComplete
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\obj\Debug\net7.0\RepoLayer.dll
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\obj\Debug\net7.0\refint\RepoLayer.dll
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\obj\Debug\net7.0\RepoLayer.pdb
+C:\Users\jmd12\onedrive\desktop\revature\JordanRevatureProjects\Project1\repolayer\obj\Debug\net7.0\ref\RepoLayer.dll

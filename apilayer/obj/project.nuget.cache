@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "EB0ByNhzsdIsIYIBEssrb3PPN0NmWu/SJOshahZqJ09sPRLgNk44hYfkULe3cPJ3ePtxGZNzxK4I3gscOP2otA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jmd12\\onedrive\\desktop\\revature\\JordanRevatureProjects\\Project1\\apilayer\\apilayer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jmd12\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.0\\microsoft.aspnetcore.openapi.7.0.0.nupkg.sha512",
+    "C:\\Users\\jmd12\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\jmd12\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\jmd12\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\jmd12\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\jmd12\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\jmd12\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
