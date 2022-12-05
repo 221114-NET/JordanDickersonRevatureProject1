@@ -3,11 +3,16 @@
 using System;
 using ModelsLayer;
 using RepoLayer;
-public class BusinessClass
+public class BusinessClass : IBusinessClass
 {
     // dependency injection used with Ilogin interface
     //private readonly Ilogin? loginInjection;
-    RepoLogger repo = new RepoLogger();
+    //RepoLogger repo = new RepoLogger();
+    private readonly IRepoClass iRepo; // dependency injection
+
+    public BusinessClass(IRepoClass iRepo){ // constructor for di
+        this.iRepo = iRepo;
+    }
     
     public object BusinessLoginRequest()
     {
@@ -25,6 +30,6 @@ public class BusinessClass
     public Employee ReimbursementRequest()
     {
         Employee e = new Employee("jdog","password");
-        return repo.ReimbursementRequest(e);
+        return iRepo.ReimbursementRequest(e);
     }
 }   

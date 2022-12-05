@@ -1,3 +1,6 @@
+using apilayer;
+using BusinessLayer;
+using RepoLayer;
 
 namespace apilayer;
 
@@ -13,6 +16,11 @@ public class Program
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+
+        //register di ------------------------------------------------------------
+        builder.Services.AddScoped<IBusinessClass, BusinessClass>(); 
+        builder.Services.AddScoped<IRepoClass, RepoLogger>();
+        // ------------------------------------------------------------------------
 
         var app = builder.Build();
 

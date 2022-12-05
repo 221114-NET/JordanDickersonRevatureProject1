@@ -13,17 +13,23 @@ namespace apilayer.Controllers
     public class RequestController : ControllerBase
     {
 
-       BusinessClass business = new BusinessClass();
+       //BusinessClass business = new BusinessClass();
+       private readonly IBusinessClass iBus; // dependency injection
+
+       public RequestController(IBusinessClass iBus){ // constructor for di
+        this.iBus = iBus;
+       }
+
         [HttpGet]
         public void GetLogin()
         {
-            business.BusinessLoginRequest();
+            iBus.BusinessLoginRequest();
         }
 
         [HttpPost]
         public Employee AddReimbursementRequest()
         {
-            return business.ReimbursementRequest();
+            return iBus.ReimbursementRequest();
             
         }
 

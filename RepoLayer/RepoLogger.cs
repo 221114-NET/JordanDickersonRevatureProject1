@@ -7,7 +7,7 @@ using ModelsLayer;
 
 namespace RepoLayer
 {
-    public class RepoLogger
+    public class RepoLogger : IRepoClass
     {
         public object RepoLogin(string username, string password)
         {
@@ -23,14 +23,29 @@ namespace RepoLayer
 
         public Employee ReimbursementRequest(Employee e)
         {
-            IList<Employee> PostList = new List<Employee>();
-            PostList.Add(e);
+            if (File.Exists("SerializedPostList.json"))
+            {
+                string oldPlist = File.ReadAllText("SerializedPostList.json");
 
-            string serializedPostList = JsonSerializer.Serialize(PostList);
-            File.WriteAllText("SerializedPostList.json", serializedPostList);
-            File.ReadAllText(serializedPostList);
+                List<Employee> PostList = JsonSerializer.Deserialize<List<Employee>>(oldPlist)!;
+                PostList.Add(e);
 
-            return e;
+                string serializedPostList = JsonSerializer.Serialize(PostList);
+                File.WriteAllText("SerializedPostList.json", serializedPostList);
+
+                return e;
+            }
+            else
+            {
+                List<Employee> PostList = new List<Employee>();
+                PostList.Add(e);
+
+                string serializedPostList = JsonSerializer.Serialize(PostList);
+
+                File.WriteAllText("SerializedPostList.json", serializedPostList);
+
+                return e;
+            }
         }
     }
 }
