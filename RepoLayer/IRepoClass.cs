@@ -8,7 +8,8 @@ namespace RepoLayer
 {
     public interface IRepoClass
     {
+        object LoginRequest(string username, string password);
         Employee ReimbursementRequest(Employee e);
-        object RepoLogin(string username, string password);
+        
     }
 }

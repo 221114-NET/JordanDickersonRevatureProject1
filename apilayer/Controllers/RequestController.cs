@@ -21,13 +21,13 @@ namespace apilayer.Controllers
        }
 
         [HttpGet]
-        public void GetLogin()
+        public void LoginRequest()
         {
-            iBus.BusinessLoginRequest();
+            iBus.LoginRequest();
         }
 
         [HttpPost]
-        public Employee AddReimbursementRequest()
+        public Employee ReimbursementRequest()
         {
             return iBus.ReimbursementRequest();
             

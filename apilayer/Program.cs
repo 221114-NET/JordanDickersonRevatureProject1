@@ -19,7 +19,8 @@ public class Program
 
         //register di ------------------------------------------------------------
         builder.Services.AddScoped<IBusinessClass, BusinessClass>(); 
-        builder.Services.AddScoped<IRepoClass, RepoLogger>();
+        builder.Services.AddScoped<IRepoClass, RepoClass>();
+        builder.Services.AddSingleton<IMyLogger, MyLogger>();
         // ------------------------------------------------------------------------
 
         var app = builder.Build();

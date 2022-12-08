@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jmd12\\onedrive\\desktop\\revature\\JordanRevatureProjects\\Project1\\ModelsLayer\\ModelsLayer.csproj": {}
+    "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\ModelsLayer\\ModelsLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jmd12\\onedrive\\desktop\\revature\\JordanRevatureProjects\\Project1\\ModelsLayer\\ModelsLayer.csproj": {
+    "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\ModelsLayer\\ModelsLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jmd12\\onedrive\\desktop\\revature\\JordanRevatureProjects\\Project1\\ModelsLayer\\ModelsLayer.csproj",
+        "projectUniqueName": "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\ModelsLayer\\ModelsLayer.csproj",
         "projectName": "ModelsLayer",
-        "projectPath": "C:\\Users\\jmd12\\onedrive\\desktop\\revature\\JordanRevatureProjects\\Project1\\ModelsLayer\\ModelsLayer.csproj",
+        "projectPath": "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\ModelsLayer\\ModelsLayer.csproj",
         "packagesPath": "C:\\Users\\jmd12\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jmd12\\onedrive\\desktop\\revature\\JordanRevatureProjects\\Project1\\ModelsLayer\\obj\\",
+        "outputPath": "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\ModelsLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jmd12\\AppData\\Roaming\\NuGet\\NuGet.Config"

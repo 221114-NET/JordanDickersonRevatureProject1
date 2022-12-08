@@ -14,7 +14,7 @@ public class BusinessClass : IBusinessClass
         this.iRepo = iRepo;
     }
     
-    public object BusinessLoginRequest()
+    public object LoginRequest()
     {
         //object something = loginInjection?.login(username,password);
 
