@@ -18,6 +18,7 @@ public class Program
         builder.Services.AddSwaggerGen();
 
         //register di ------------------------------------------------------------
+        // we have to register denpendency injection because we need to tell the builder which class implements the said interface
         builder.Services.AddScoped<IBusinessClass, BusinessClass>(); 
         builder.Services.AddScoped<IRepoClass, RepoClass>();
         builder.Services.AddSingleton<IMyLogger, MyLogger>();

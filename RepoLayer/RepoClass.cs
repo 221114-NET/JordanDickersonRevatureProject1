@@ -14,6 +14,14 @@ namespace RepoLayer
         public RepoClass(IMyLogger iLog){
             this.iLog = iLog;
         }
+
+        public Employee SignUpRequest(Employee e)
+        {
+            iLog.LogStuff(e);
+            /* returns the employee object to the business layer
+             then from the business layer the object goes to the apilayer*/
+            return e; 
+        }
         public object LoginRequest(string username, string password)
         {
             /*IDictionary<string, string> loginList = new Dictionary<string, string>();

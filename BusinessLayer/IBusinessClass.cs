@@ -7,7 +7,9 @@ namespace BusinessLayer
 {
     public interface IBusinessClass
     {
+        object SignUpRequest();
         object LoginRequest();
         public Employee ReimbursementRequest();
+        
     }
 }

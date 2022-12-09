@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\apilayer\\apilayer.csproj": {}
+    "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\apiLayer\\apilayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\apilayer\\apilayer.csproj": {
+    "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\apiLayer\\apilayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\apilayer\\apilayer.csproj",
+        "projectUniqueName": "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\apiLayer\\apilayer.csproj",
         "projectName": "apilayer",
-        "projectPath": "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\apilayer\\apilayer.csproj",
+        "projectPath": "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\apiLayer\\apilayer.csproj",
         "packagesPath": "C:\\Users\\jmd12\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\apilayer\\obj\\",
+        "outputPath": "C:\\Users\\jmd12\\OneDrive\\Desktop\\Revature\\JordanRevatureProjects\\Project1\\apiLayer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jmd12\\AppData\\Roaming\\NuGet\\NuGet.Config"

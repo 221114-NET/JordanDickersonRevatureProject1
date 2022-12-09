@@ -7,8 +7,8 @@ namespace ModelsLayer
 {
     public class FinanceManager : FinanceManagerAbstract
     {
-        public string username{ get; set; }
-        public string password{ get; set; } 
+        private string username{ get; set; }
+        private string password{ get; set; } 
         public FinanceManager(string username, string password)
         {
             this.username = username;

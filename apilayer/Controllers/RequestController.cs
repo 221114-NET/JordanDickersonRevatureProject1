@@ -20,6 +20,12 @@ namespace apilayer.Controllers
         this.iBus = iBus;
        }
 
+        [HttpPost("sign-up-request")]  // employees sign up using this action method
+        public object SignUpRequest()
+        {
+            return iBus.SignUpRequest();
+        }
+
         [HttpGet]
         public void LoginRequest()
         {

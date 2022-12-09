@@ -13,6 +13,19 @@ public class BusinessClass : IBusinessClass
     public BusinessClass(IRepoClass iRepo){ // constructor for di
         this.iRepo = iRepo;
     }
+
+    public object SignUpRequest() // client enters the email and password to sign up
+    {
+        Console.WriteLine("What is your email?");
+        string email = Console.ReadLine()!;
+
+        Console.WriteLine("Create a password.");
+        string password = Console.ReadLine()!;
+
+        Employee e = new Employee(email,password);
+
+        return iRepo.SignUpRequest(e);
+    }
     
     public object LoginRequest()
     {
