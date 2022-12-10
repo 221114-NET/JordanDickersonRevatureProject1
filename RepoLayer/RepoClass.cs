@@ -28,9 +28,11 @@ namespace RepoLayer
             return o;
         }
 
-        public Employee ReimbursementRequest(Employee e)
+        public string ReimbursementRequest(Employee e)
         {
-            if (File.Exists("SerializedPostList.json"))
+            iLog.LogStuff(e);
+            return e.Request!;
+            /*if (File.Exists("SerializedPostList.json"))
             {
                 string oldPlist = File.ReadAllText("SerializedPostList.json");
 
@@ -54,7 +56,7 @@ namespace RepoLayer
 
                 iLog.LogStuff(e);
                 return e;
-            }
+            }*/
         }
     }
 }

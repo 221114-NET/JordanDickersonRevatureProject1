@@ -21,9 +21,10 @@ namespace ModelsLayer
 
         public override string ReimbursementRequest()
         {
+            // do while loop for type validation
             do{
             Console.WriteLine("What type of reimbursement ticket are you submitting?");
-            Console.WriteLine("Pick from the following types (Travel, food or rental)?");
+            Console.WriteLine("Pick from the following types (Travel, Food or Rental)?");
             Type = Console.ReadLine()!.ToLower().Replace(" ","");
             }while(!Type.Equals("travel") && !Type.Equals("food") && !Type.Equals("rental"));
 
@@ -35,7 +36,7 @@ namespace ModelsLayer
 
             Status = "Pending";
 
-            return Request = $"Ticket     type:{Type}     amount:{Amount}    description:{Description}    status:{Status}";
+            return Request = $"Ticket Type: {Type} \nAmount: {Amount} \nDescription: {Description} \nStatus: {Status}";
         }
         public override void viewUpdatedStatus()
         {
