@@ -5,23 +5,19 @@ using System.Threading.Tasks;
 
 namespace ModelsLayer
 {
-    public class Employee //: EmployeeAbstract
+    public class Employee : EmployeeAbstract
     {
-        public string username{ get; set; }
-        public string password{ get; set; } 
-        public Employee(string username, string password)
-        {
-            this.username = username;
-            this.password = password;
-        }
-        /*public override void addReimbursementRequest()
+        public string ?email{ get; set; }
+        public string ?password{ get; set; } 
+
+        public override void addReimbursementRequest()
         {
 
         }
         public override void viewUpdatedStatus()
         {
 
-        }*/
+        }
 
     }
 }

@@ -7,13 +7,9 @@ namespace ModelsLayer
 {
     public class FinanceManager : FinanceManagerAbstract
     {
-        private string username{ get; set; }
-        private string password{ get; set; } 
-        public FinanceManager(string username, string password)
-        {
-            this.username = username;
-            this.password = password;
-        }
+        public string ?email{ get; set; }
+        public string ?password{ get; set; } 
+
         public override void viewPendingRequest(bool result)
         {
 

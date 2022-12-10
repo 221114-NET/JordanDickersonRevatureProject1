@@ -26,10 +26,10 @@ namespace apilayer.Controllers
             return iBus.SignUpRequest();
         }
 
-        [HttpGet]
-        public void LoginRequest()
+        [HttpGet("log-in-request")]
+        public object LoginRequest()
         {
-            iBus.LoginRequest();
+            return iBus.LoginRequest();
         }
 
         [HttpPost]

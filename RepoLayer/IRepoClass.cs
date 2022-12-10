@@ -9,7 +9,7 @@ namespace RepoLayer
     public interface IRepoClass
     {
         Employee SignUpRequest(Employee e);
-        object LoginRequest(string username, string password);
+        object LoginRequest(object o);
         Employee ReimbursementRequest(Employee e);
         
     }

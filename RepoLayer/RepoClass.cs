@@ -22,16 +22,10 @@ namespace RepoLayer
              then from the business layer the object goes to the apilayer*/
             return e; 
         }
-        public object LoginRequest(string username, string password)
+        public object LoginRequest(object o)
         {
-            /*IDictionary<string, string> loginList = new Dictionary<string, string>();
-            loginList.Add(username, password);
-            loginList.Add("chickenFinger","password");
-
-            string serializedLoginList = JsonSerializer.Serialize(loginList);
-            File.WriteAllText("SerializedLoginList.json", serializedLoginList);
-            File.ReadAllText(serializedLoginList);*/
-            return "";
+            iLog.LogStuff(o);
+            return o;
         }
 
         public Employee ReimbursementRequest(Employee e)
