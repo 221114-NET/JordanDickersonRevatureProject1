@@ -10,7 +10,7 @@ namespace RepoLayer
     {
         Employee SignUpRequest(Employee e);
         object LoginRequest(object o);
-        Employee ReimbursementRequest(Employee e);
+        string ReimbursementRequest(Employee e);
         
     }
 }

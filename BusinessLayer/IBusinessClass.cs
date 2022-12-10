@@ -9,7 +9,7 @@ namespace BusinessLayer
     {
         object SignUpRequest();
         object LoginRequest();
-        public Employee ReimbursementRequest();
+        public string ReimbursementRequest();
         
     }
 }

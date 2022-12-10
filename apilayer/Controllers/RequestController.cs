@@ -32,20 +32,19 @@ namespace apilayer.Controllers
             return iBus.LoginRequest();
         }
 
-        [HttpPost]
-        public Employee ReimbursementRequest()
+        [HttpPost("reimbursement-request")]
+        public string ReimbursementRequest()
         {
             return iBus.ReimbursementRequest();
-            
         }
 
-        /*[HttpGet]
+        [HttpGet]
         public string ViewPendingRequest(FinanceManager f)
         {
             return "view request";
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public string ViewUpdatedStatus(Employee e)
         {
             return "viewstatus";

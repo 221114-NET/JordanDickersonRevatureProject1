@@ -7,7 +7,7 @@ namespace ModelsLayer
 {
     public abstract class EmployeeAbstract
     {
-        public abstract void addReimbursementRequest();
+        public abstract string ReimbursementRequest();
         public abstract void viewUpdatedStatus();
     }
 }

@@ -34,8 +34,8 @@ namespace RepoLayer
             {
                 string oldPlist = File.ReadAllText("SerializedPostList.json");
 
-                List<Employee> PostList = JsonSerializer.Deserialize<List<Employee>>(oldPlist)!;
-                PostList.Add(e);
+                List<string> PostList = JsonSerializer.Deserialize<List<string>>(oldPlist)!;
+                PostList.Add(e.ReimbursementRequest());
 
                 string serializedPostList = JsonSerializer.Serialize(PostList);
                 File.WriteAllText("SerializedPostList.json", serializedPostList);
@@ -45,8 +45,8 @@ namespace RepoLayer
             }
             else
             {
-                List<Employee> PostList = new List<Employee>();
-                PostList.Add(e);
+                List<string> PostList = new List<string>();
+                PostList.Add(e.ReimbursementRequest());
 
                 string serializedPostList = JsonSerializer.Serialize(PostList);
 

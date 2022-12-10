@@ -18,10 +18,10 @@ public class BusinessClass : IBusinessClass
     {
         Employee e = new Employee();
         Console.WriteLine("What is your email?");
-        e.email = Console.ReadLine()!;
+        e.Email = Console.ReadLine()!;
 
         Console.WriteLine("Create a password.");
-        e.password = Console.ReadLine()!;
+        e.Password = Console.ReadLine()!;
 
         return iRepo.SignUpRequest(e);
     }
@@ -43,10 +43,10 @@ public class BusinessClass : IBusinessClass
             Employee e = new Employee();
 
             Console.WriteLine("What is your email?");
-            e.email = Console.ReadLine()!;
+            e.Email = Console.ReadLine()!;
 
             Console.WriteLine("Create a password.");
-            e.password = Console.ReadLine()!;
+            e.Password = Console.ReadLine()!;
 
             o = e;
             
@@ -56,10 +56,10 @@ public class BusinessClass : IBusinessClass
             FinanceManager f = new FinanceManager();
 
             Console.WriteLine("What is your email?");
-            f.email = Console.ReadLine()!;
+            f.Email = Console.ReadLine()!;
 
             Console.WriteLine("Create a password.");
-            f.password = Console.ReadLine()!;
+            f.Password = Console.ReadLine()!;
 
             o = f;
         }
@@ -67,9 +67,10 @@ public class BusinessClass : IBusinessClass
         return iRepo.LoginRequest(o);
     }
 
-    public Employee ReimbursementRequest()
+    public string ReimbursementRequest()
     {
         Employee e = new Employee();
+        e.ReimbursementRequest();
         return iRepo.ReimbursementRequest(e);
 
     }
