@@ -16,17 +16,16 @@ namespace ModelsLayer
         }
 
         // get employee constructor
-        public Employee(string EmployeeId, string Email, string Password, string Position, string FirstName, string LastName)
+        public Employee(int EmployeeId,  string Position, string FirstName, string LastName)
         {
-            this.Email = Email;
-            this.Password = Password;
+            this.EmployeeId = EmployeeId;
             this.Position = Position;
             this.FirstName = FirstName;
             this.LastName = LastName;
         }
 
 
-        public string ?EmployeeId{ get; set; }
+        public int ?EmployeeId{ get; set; }
 
         [JsonPropertyName("email")]
         public string ?Email{ get; set; }
@@ -78,6 +77,11 @@ namespace ModelsLayer
             return Request = $"Ticket Type: {Type} \nAmount: {Amount} \nDescription: {Description} \nStatus: {Status}";
         }
         public override void viewUpdatedStatus()
+        {
+
+        }
+
+        public override void ViewPendingRequest(bool result)
         {
 
         }

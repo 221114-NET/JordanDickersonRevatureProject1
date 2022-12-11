@@ -16,11 +16,12 @@ namespace RepoLayer
             this.iLog = iLog;
         }
 
+        // add ADO.NET to push the data to the DB
+        SqlConnection conn = new SqlConnection();
+        
         public Employee SignUpRequest(Employee e)
         {
-            // add ADO.NET to push the data to the DB
-            SqlConnection conn = new SqlConnection();
-          
+            
             SqlCommand command = new SqlCommand($"insert into Employees(Email, Password, Position, FirstName, LastName)"
             + $"SELECT * from (SELECT @Email as Email,"
             + $" @Password as Password,"
@@ -46,7 +47,6 @@ namespace RepoLayer
             if(rowsAffected == 1)
             {
                 iLog.LogStuff(e);
-                
             }
             else
             {
@@ -56,15 +56,29 @@ namespace RepoLayer
            
             conn.Close();
             return e;
-            //iLog.LogStuff(e);
-            /* returns the employee object to the business layer
-             then from the business layer the object goes to the apilayer*/
-            //return e; 
         }
-        public object LoginRequest(object o)
+        public List<Employee> LoginRequest(Employee e)
         {
-            iLog.LogStuff(o);
-            return o;
+            List<Employee> employees = new List<Employee>();
+            SqlCommand command = new SqlCommand($"Select EmployeeId, Position, FirstName, LastName From Employees Where Email = @Email AND Password = @Password", conn);
+
+            conn.Open();
+
+            command.Parameters.AddWithValue("@Email", e.Email);
+            command.Parameters.AddWithValue("@Password", e.Password);
+
+            SqlDataReader resultSet = command.ExecuteReader(); // return record/s in a different format
+            
+            iLog.LogStuff(e);
+            while(resultSet.Read()) // this method does the conversion that allows me to put the recond/s in a string 
+            {
+                // a mapper just re formats the result set coming back
+                Employee employee = Mapper.DataBaseToEmployee(resultSet);
+                employees.Add(employee);
+            }
+            
+            conn.Close();
+            return employees;
         }
 
         public string ReimbursementRequest(Employee e)

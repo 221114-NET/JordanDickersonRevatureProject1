@@ -23,29 +23,29 @@ public class BusinessClass : IBusinessClass
         Console.WriteLine("Create a password.");
         e.Password = Console.ReadLine()!;
 
-        Console.WriteLine("Create your first name.");
+        Console.WriteLine("Enter your first name.");
         e.FirstName = Console.ReadLine()!;
 
-        Console.WriteLine("Create your last name.");
+        Console.WriteLine("Enter your last name.");
         e.LastName = Console.ReadLine()!;
 
         return iRepo.SignUpRequest(e);
     }
     
-    public object LoginRequest()
+    public List<Employee> LoginRequest()
     {
         Object o = new Object(); // creating a reference of the object class to reference one of my objects;
         
         // while positions does not equal Employee or Manager keep the client in a loop
-        string position;
+        /*string position;
         do{
             Console.WriteLine("Are you an Employee or Manager? Enter Employee or Manager");
             position = Console.ReadLine()!.ToUpper().Replace(" ","");
-        }while(!position.Equals("EMPLOYEE") && !position.Equals("MANAGER"));
+        }while(!position.Equals("EMPLOYEE") && !position.Equals("MANAGER"));*/
 
 
-        if(position.Equals("EMPLOYEE"))
-        {
+        //if(position.Equals("EMPLOYEE"))
+        //{
             Employee e = new Employee();
 
             Console.WriteLine("What is your email?");
@@ -54,10 +54,10 @@ public class BusinessClass : IBusinessClass
             Console.WriteLine("Create a password.");
             e.Password = Console.ReadLine()!;
 
-            o = e;
+            //o = e;
             
-        }
-        else if(position.Equals("MANAGER"))
+        //}
+        /*else if(position.Equals("MANAGER"))
         {
             FinanceManager f = new FinanceManager();
 
@@ -68,9 +68,9 @@ public class BusinessClass : IBusinessClass
             f.Password = Console.ReadLine()!;
 
             o = f;
-        }
+        }*/
 
-        return iRepo.LoginRequest(o);
+        return iRepo.LoginRequest(e);
     }
 
     public string ReimbursementRequest()

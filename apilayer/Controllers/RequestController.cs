@@ -33,31 +33,45 @@ namespace apilayer.Controllers
             {
                 return NotFound("that modelbinding did not work");
             }*/
-
-            return iBus.SignUpRequest(e);
-            //return Created($"https://localhost:5255/api/employee/getemployee/{e.EmployeeId}", e);
+            if(e != null)
+            {
+                iBus.SignUpRequest(e);
+                return Created($"https://localhost:5255/api/employee/getemployee/{e.EmployeeId}", e);
+            }
+            else{
+                return iBus.SignUpRequest(e!);
+            }
        }
 
-       /* [HttpPost("sign-up-request")]  // employees sign up using this action method
-        public object SignUpRequest()
-        {
-            return iBus.SignUpRequest();
-        }*/
-
         [HttpGet("log-in-request")]
-        public object LoginRequest()
+        public ActionResult<List<Employee>> LoginRequest()
         {
-            return iBus.LoginRequest();
+            // returns a list of string type because we don't need the email and password of the employee
+
+            List<Employee> employeeList = iBus.LoginRequest();
+
+            if(employeeList.Count == 0)
+            {
+                Console.WriteLine("Invalid Email and Password combination.");
+                //Problem("");
+            }
+            else
+            {
+                Console.WriteLine($"Welcome back {employeeList[0].FirstName} {employeeList[0].LastName}.");
+                //Ok("Successfull");
+            }
+
+            return employeeList;
         }
 
         [HttpPost("reimbursement-request")]
-        public string ReimbursementRequest()
+        public ActionResult<string> ReimbursementRequest()
         {
             return iBus.ReimbursementRequest();
         }
 
         [HttpGet("view-pending-request")]
-        public string ViewPendingRequest()
+        public ActionResult<string> ViewPendingRequest()
         {
             return "view request";
         }

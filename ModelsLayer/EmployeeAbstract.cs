@@ -9,5 +9,6 @@ namespace ModelsLayer
     {
         public abstract string ReimbursementRequest();
         public abstract void viewUpdatedStatus();
+        public abstract void ViewPendingRequest(bool result);
     }
 }
