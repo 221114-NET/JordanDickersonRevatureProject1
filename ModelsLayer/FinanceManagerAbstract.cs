@@ -7,5 +7,5 @@ namespace ModelsLayer;
 
 public abstract class FinanceManagerAbstract
 {
-    public abstract void viewPendingRequest(bool result);
+    public abstract void ViewPendingRequest(bool result);
 }

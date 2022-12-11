@@ -10,7 +10,7 @@ namespace ModelsLayer
         public string ?Email{ get; set; }
         public string ?Password{ get; set; } 
 
-        public override void viewPendingRequest(bool result)
+        public override void ViewPendingRequest(bool result)
         {
 
         }

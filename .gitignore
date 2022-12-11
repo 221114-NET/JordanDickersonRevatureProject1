@@ -478,3 +478,6 @@ $RECYCLE.BIN/
 
 # all png images
 *.png
+
+*.env
+

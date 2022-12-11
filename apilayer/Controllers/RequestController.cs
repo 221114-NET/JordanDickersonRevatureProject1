@@ -16,15 +16,33 @@ namespace apilayer.Controllers
        //BusinessClass business = new BusinessClass();
        private readonly IBusinessClass iBus; // dependency injection
 
-       public RequestController(IBusinessClass iBus){ // constructor for di
-        this.iBus = iBus;
+       public RequestController(IBusinessClass iBus) // constructor for di
+       { 
+            this.iBus = iBus;
        }
 
-        [HttpPost("sign-up-request")]  // employees sign up using this action method
+       [HttpPost("sign-up-request")] 
+       public ActionResult<Employee> SignUpRequest(Employee e)
+       {
+            /* Employee e
+            if(ModelState.IsValid)
+            {
+                Employee e1 = this.iBus.SignUpRequest(e);
+            }
+            else
+            {
+                return NotFound("that modelbinding did not work");
+            }*/
+
+            return iBus.SignUpRequest(e);
+            //return Created($"https://localhost:5255/api/employee/getemployee/{e.EmployeeId}", e);
+       }
+
+       /* [HttpPost("sign-up-request")]  // employees sign up using this action method
         public object SignUpRequest()
         {
             return iBus.SignUpRequest();
-        }
+        }*/
 
         [HttpGet("log-in-request")]
         public object LoginRequest()
@@ -38,8 +56,8 @@ namespace apilayer.Controllers
             return iBus.ReimbursementRequest();
         }
 
-        [HttpGet]
-        public string ViewPendingRequest(FinanceManager f)
+        [HttpGet("view-pending-request")]
+        public string ViewPendingRequest()
         {
             return "view request";
         }

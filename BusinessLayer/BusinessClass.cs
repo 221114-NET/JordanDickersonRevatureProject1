@@ -14,14 +14,20 @@ public class BusinessClass : IBusinessClass
         this.iRepo = iRepo;
     }
 
-    public object SignUpRequest() // client enters the email and password to sign up
+    public Employee SignUpRequest(Employee e) // client enters the email and password to sign up
     {
-        Employee e = new Employee();
+        //Employee e = new Employee();
         Console.WriteLine("What is your email?");
         e.Email = Console.ReadLine()!;
 
         Console.WriteLine("Create a password.");
         e.Password = Console.ReadLine()!;
+
+        Console.WriteLine("Create your first name.");
+        e.FirstName = Console.ReadLine()!;
+
+        Console.WriteLine("Create your last name.");
+        e.LastName = Console.ReadLine()!;
 
         return iRepo.SignUpRequest(e);
     }
