@@ -94,4 +94,15 @@ public class BusinessClass : IBusinessClass
     {
         return iRepo.ViewAllTickets(e);
     }
+
+    public Employee EditNameRequest(Employee e)
+    {
+        Console.WriteLine("Update your first name");
+        e.FirstName = Console.ReadLine()!;
+
+        Console.WriteLine("Update your last name");
+        e.LastName = Console.ReadLine()!;
+
+        return iRepo.EditNameRequest(e);
+    }
 }   

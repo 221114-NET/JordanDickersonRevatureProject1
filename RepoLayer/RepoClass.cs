@@ -211,5 +211,17 @@ namespace RepoLayer
             conn.Close();
             return tickets;
         }
+
+        public Employee EditNameRequest(Employee e)
+        {
+            SqlCommand command = new SqlCommand($"Update Employees Set FirstName = @FirstName, LastName = @LastName Where Email = @Email and Password = @Password", conn);
+
+            conn.Open();
+            command.Parameters.AddWithValue("@FirstName", e.FirstName);
+            command.Parameters.AddWithValue("@LastName", e.LastName);
+            
+            conn.Close();
+            return e;
+        }
     }
 }

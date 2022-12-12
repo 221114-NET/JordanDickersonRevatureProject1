@@ -112,5 +112,11 @@ namespace apilayer.Controllers
             return tickets;
         }
 
+        [HttpPut("EditNameRequest")]
+        public ActionResult<Employee> EditNameRequest(Employee e)
+        {
+            return iBus.EditNameRequest(e);
+        }
+
     }
 }
