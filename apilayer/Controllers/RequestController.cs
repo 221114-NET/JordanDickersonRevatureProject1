@@ -10,10 +10,12 @@ namespace apilayer.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+
+    
     public class RequestController : ControllerBase
     {
 
-       //BusinessClass business = new BusinessClass();
+        List<ReimbursementTicket> tickets = new List<ReimbursementTicket>();
        private readonly IBusinessClass iBus; // dependency injection
 
        public RequestController(IBusinessClass iBus) // constructor for di
@@ -24,15 +26,6 @@ namespace apilayer.Controllers
        [HttpPost("SignUpRequest")] 
        public ActionResult<Employee> SignUpRequest(Employee e)
        {
-            /* Employee e
-            if(ModelState.IsValid)
-            {
-                Employee e1 = this.iBus.SignUpRequest(e);
-            }
-            else
-            {
-                return NotFound("that modelbinding did not work");
-            }*/
             if(e != null)
             {
                 iBus.SignUpRequest(e);
@@ -65,57 +58,96 @@ namespace apilayer.Controllers
         }
 
         [HttpPost("ReimbursementRequest")]
-        public ActionResult<ReimbursementTicket> ReimbursementRequest( Employee e)
+        public ActionResult<ReimbursementTicket> ReimbursementRequest()
         {
-            return iBus.ReimbursementRequest(e);
+            ReimbursementTicket request = iBus.ReimbursementRequest();
+            if(request == null)
+            {
+                Console.WriteLine("You must be an Employee");
+            }
+            return request!;  
         }
 
         [HttpGet("ViewPendingRequest")]
         public ActionResult<List<ReimbursementTicket>> ViewPendingRequest()
         {
-            List<ReimbursementTicket> tickets = iBus.ViewPendingRequest();
+            tickets = iBus.ViewPendingRequest();
 
-            if(tickets.Count == 0)
-            {
-                Console.WriteLine($"There's a total of {tickets.Count} tickets.");
-                //Problem("");
-            }
-            else
-            {
-                Console.WriteLine($"There's a total of {tickets.Count} tickets.");
-                //Ok("Successfull");
-            }
-            return tickets;
+            UpdatePendingRequest(tickets);
+
+            return tickets!;
         }
 
-        [HttpPut("UpdatePendingRequest")]
+        [HttpPatch("UpdatePendingRequest")]
         public ActionResult<string> UpdatePendingRequest(List<ReimbursementTicket> tickets)
         {
             return iBus.UpdatePendingRequest(tickets);
         }
 
         [HttpGet("ViewAllTickets")]
-        public ActionResult<List<ReimbursementTicket>> ViewAllTickets(Employee e)
+        public ActionResult<List<ReimbursementTicket>> ViewAllTickets()
         {
-            List<ReimbursementTicket> tickets = iBus.ViewAllTickets(e);
+            List<ReimbursementTicket> tickets = iBus.ViewAllTickets();
 
             if(tickets.Count == 0)
             {
                 Console.WriteLine($"You don't have any tickets to view");
                 //Problem("");
             }
+            else if(tickets == null)
+            {
+                Console.WriteLine("You must be an Employee");
+            }
             else
             {
                 Console.WriteLine($"There's a total of {tickets.Count} tickets.");
+                foreach(ReimbursementTicket ticket in tickets)
+                {
+                    Console.WriteLine(ticket.Request);
+                }
                 //Ok("Successfull");
             }
-            return tickets;
+            return tickets!;
         }
 
-        [HttpPut("EditNameRequest")]
-        public ActionResult<Employee> EditNameRequest(Employee e)
+        [HttpGet("FilterTickets")]
+        public ActionResult<List<ReimbursementTicket>> FilterTickets()
         {
-            return iBus.EditNameRequest(e);
+            List<ReimbursementTicket> tickets = iBus.FilterTickets();
+
+            if(tickets.Count == 0)
+            {
+                Console.WriteLine($"You don't have any tickets to view");
+                //Problem("");
+            }
+            else if(tickets == null)
+            {
+                Console.WriteLine("You must be an Employee");
+            }
+            else
+            {
+                Console.WriteLine($"{tickets.Count} tickets returned.");
+                foreach(ReimbursementTicket ticket in tickets)
+                {
+                    Console.WriteLine(ticket.Request);
+                }
+                //Ok("Successfull");
+            }
+            return tickets!;
+        }
+
+        [HttpPatch("EditNameRequest")]
+        public ActionResult<Employee> EditNameRequest()
+        {
+            Employee e = iBus.EditNameRequest();
+            if(e == null)
+            {
+                Console.WriteLine("You must be an Employee");
+            }
+            else{
+                Console.WriteLine($"{e.FirstName} and {e.LastName} has be updated.");
+            }
+            return e!;
         }
 
     }

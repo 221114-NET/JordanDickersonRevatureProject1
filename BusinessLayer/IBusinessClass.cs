@@ -9,10 +9,13 @@ namespace BusinessLayer
     {
         Employee SignUpRequest(Employee e);
         List<Employee> LoginRequest();
-        ReimbursementTicket ReimbursementRequest(Employee e);
+        ReimbursementTicket ReimbursementRequest();
         List<ReimbursementTicket> ViewPendingRequest();
         string UpdatePendingRequest(List<ReimbursementTicket> tickets);
-        List<ReimbursementTicket> ViewAllTickets(Employee e);
-        Employee EditNameRequest(Employee e);
+        List<ReimbursementTicket> ViewAllTickets();
+
+        List<ReimbursementTicket> FilterTickets();
+        Employee EditNameRequest();
+        
     }
 }

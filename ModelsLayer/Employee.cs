@@ -8,9 +8,12 @@ namespace ModelsLayer
 {
     public class Employee : EmployeeAbstract
     {
-
-        // constructor for employee object to post data into it
         public Employee(){}
+        // constructor for employee object to post data into it
+        public Employee(int EmployeeId, string Position){
+            this.EmployeeId = EmployeeId;
+            this.Position = Position;
+        }
 
         // get employee constructor
         public Employee(int EmployeeId,  string Position, string FirstName, string LastName)
@@ -31,7 +34,7 @@ namespace ModelsLayer
         public string ?Password{ get; set; }
 
         [JsonPropertyName("position")] 
-        public string ?Position{ get; set; } = "Employee";
+        public string ?Position{ get; set; }
 
         [JsonPropertyName("firstname")]
         public string ?FirstName{ get; set; }

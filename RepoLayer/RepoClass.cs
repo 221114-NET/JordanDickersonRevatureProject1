@@ -112,31 +112,6 @@ namespace RepoLayer
             
             conn.Close();
             return ticket;
-            /*if (File.Exists("SerializedPostList.json"))
-            {
-                string oldPlist = File.ReadAllText("SerializedPostList.json");
-
-                List<string> PostList = JsonSerializer.Deserialize<List<string>>(oldPlist)!;
-                PostList.Add(e.ReimbursementRequest());
-
-                string serializedPostList = JsonSerializer.Serialize(PostList);
-                File.WriteAllText("SerializedPostList.json", serializedPostList);
-
-                iLog.LogStuff(e);
-                return e;
-            }
-            else
-            {
-                List<string> PostList = new List<string>();
-                PostList.Add(e.ReimbursementRequest());
-
-                string serializedPostList = JsonSerializer.Serialize(PostList);
-
-                File.WriteAllText("SerializedPostList.json", serializedPostList);
-
-                iLog.LogStuff(e);
-                return e;
-            }*/
         }
 
         public List<ReimbursementTicket> ViewPendingRequest()
@@ -157,7 +132,7 @@ namespace RepoLayer
                 ReimbursementTicket ticket = Mapper.DataBaseToTickets(resultSet);
                 tickets.Add(ticket);
             }
-            
+            Console.WriteLine($"Number of tickets returned {tickets.Count}");
             conn.Close();
             return tickets;
         }
@@ -169,6 +144,7 @@ namespace RepoLayer
             foreach(ReimbursementTicket ticket in tickets)
             {
                 do{
+                    Console.WriteLine(ticket.Request);
                     Console.WriteLine("Does the request meet the compaines rules? Type Yes or No");
                     ticket.Status = Console.ReadLine()!.ToLower().Replace(" ","");
                 }while(!ticket.Status.Equals("yes") && !ticket.Status.Equals("no"));
@@ -207,6 +183,31 @@ namespace RepoLayer
                 ReimbursementTicket ticket = Mapper.DataBaseToTickets(resultSet);
                 tickets.Add(ticket);
             }
+            Console.WriteLine($"Number of tickets returned {tickets.Count}");
+            conn.Close();
+            return tickets;
+        }
+
+
+        public List<ReimbursementTicket> FilterTickets( string t, Employee e)
+        {
+            List<ReimbursementTicket> tickets = new List<ReimbursementTicket>();
+            SqlCommand command = new SqlCommand($"Select * From Reimbursement_Tickets Where Status = @Status AND EmployeeId = @EmployeeId", conn);
+
+            conn.Open();
+            
+            command.Parameters.AddWithValue("@Status", t);
+            command.Parameters.AddWithValue("@EmployeeId", e.EmployeeId);
+
+            SqlDataReader resultSet = command.ExecuteReader(); // return record/s in a different format
+            
+            iLog.LogStuff(tickets);
+            while(resultSet.Read()) // this method goes through each row of the result set
+            {
+                // a mapper just re formats the result set
+                ReimbursementTicket ticket = Mapper.DataBaseToTickets(resultSet);
+                tickets.Add(ticket);
+            }
             
             conn.Close();
             return tickets;
@@ -214,11 +215,12 @@ namespace RepoLayer
 
         public Employee EditNameRequest(Employee e)
         {
-            SqlCommand command = new SqlCommand($"Update Employees Set FirstName = @FirstName, LastName = @LastName Where Email = @Email and Password = @Password", conn);
+            SqlCommand command = new SqlCommand($"UPDATE Employees SET FirstName = @FirstName, LastName = @LastName Where EmployeeId = @EmployeeId", conn);
 
-            conn.Open();
             command.Parameters.AddWithValue("@FirstName", e.FirstName);
             command.Parameters.AddWithValue("@LastName", e.LastName);
+            command.Parameters.AddWithValue("@EmployeeId", e.EmployeeId);
+            conn.Open();
             
             conn.Close();
             return e;

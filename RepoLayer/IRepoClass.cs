@@ -14,6 +14,9 @@ namespace RepoLayer
         List<ReimbursementTicket> ViewPendingRequest();
         string UpdatePendingRequest(List<ReimbursementTicket> tickets);
         List<ReimbursementTicket> ViewAllTickets(Employee e);
+
+        List<ReimbursementTicket> FilterTickets( string t ,Employee e);
         Employee EditNameRequest(Employee e);
+        
     }
 }
