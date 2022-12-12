@@ -12,5 +12,6 @@ namespace BusinessLayer
         ReimbursementTicket ReimbursementRequest(Employee e);
         List<ReimbursementTicket> ViewPendingRequest();
         string UpdatePendingRequest(List<ReimbursementTicket> tickets);
+        List<ReimbursementTicket> ViewAllTickets(Employee e);
     }
 }

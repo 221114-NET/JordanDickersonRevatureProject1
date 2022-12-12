@@ -94,5 +94,23 @@ namespace apilayer.Controllers
             return iBus.UpdatePendingRequest(tickets);
         }
 
+        [HttpGet("ViewAllTickets")]
+        public ActionResult<List<ReimbursementTicket>> ViewAllTickets(Employee e)
+        {
+            List<ReimbursementTicket> tickets = iBus.ViewAllTickets(e);
+
+            if(tickets.Count == 0)
+            {
+                Console.WriteLine($"You don't have any tickets to view");
+                //Problem("");
+            }
+            else
+            {
+                Console.WriteLine($"There's a total of {tickets.Count} tickets.");
+                //Ok("Successfull");
+            }
+            return tickets;
+        }
+
     }
 }

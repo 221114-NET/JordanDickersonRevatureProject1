@@ -179,7 +179,7 @@ namespace RepoLayer
                 }
                 else
                 {
-                    ticket.Status = "Denied";
+                    ticket.Status = "Rejected";
                 }
                 SqlCommand command = new SqlCommand($"Update Reimbursement_Tickets Set Status = @Status, Where Description = @Description", conn);
                 command.Parameters.AddWithValue("@Status", ticket.Status);
@@ -187,6 +187,29 @@ namespace RepoLayer
             }
             conn.Close();
             return "There are no more tickets to update.";
+        }
+
+        public List<ReimbursementTicket> ViewAllTickets(Employee e)
+        {
+            List<ReimbursementTicket> tickets = new List<ReimbursementTicket>();
+            SqlCommand command = new SqlCommand($"Select * From Reimbursement_Tickets Where EmployeeId = @EmployeeId", conn);
+
+            conn.Open();
+
+            command.Parameters.AddWithValue("@EmployeeId", e.EmployeeId);
+
+            SqlDataReader resultSet = command.ExecuteReader(); // return record/s in a different format
+            
+            iLog.LogStuff(tickets);
+            while(resultSet.Read()) // this method goes through each row of the result set
+            {
+                // a mapper just re formats the result set
+                ReimbursementTicket ticket = Mapper.DataBaseToTickets(resultSet);
+                tickets.Add(ticket);
+            }
+            
+            conn.Close();
+            return tickets;
         }
     }
 }
