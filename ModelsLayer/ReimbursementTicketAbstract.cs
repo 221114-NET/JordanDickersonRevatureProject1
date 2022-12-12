@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ModelsLayer;
 
-public abstract class FinanceManagerAbstract
+public abstract class ReimbursementTicketAbstract
 {
-    public abstract void ViewPendingRequest(bool result);
+    public abstract string ReimbursementRequest();
 }

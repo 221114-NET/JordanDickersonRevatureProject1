@@ -9,7 +9,7 @@ namespace BusinessLayer
     {
         Employee SignUpRequest(Employee e);
         List<Employee> LoginRequest();
-        public string ReimbursementRequest();
-        
+        public ReimbursementTicket ReimbursementRequest(Employee e);
+        public List<ReimbursementTicket> ViewPendingRequest();
     }
 }

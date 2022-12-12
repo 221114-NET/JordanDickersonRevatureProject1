@@ -73,11 +73,15 @@ public class BusinessClass : IBusinessClass
         return iRepo.LoginRequest(e);
     }
 
-    public string ReimbursementRequest()
+    public ReimbursementTicket ReimbursementRequest(Employee e)
     {
-        Employee e = new Employee();
-        e.ReimbursementRequest();
-        return iRepo.ReimbursementRequest(e);
+        ReimbursementTicket ticket = new ReimbursementTicket();
+        ticket.ReimbursementRequest();
+        return iRepo.ReimbursementRequest(ticket, e);
+    }
 
+    public List<ReimbursementTicket> ViewPendingRequest()
+    {
+        return iRepo.ViewPendingRequest();
     }
 }   

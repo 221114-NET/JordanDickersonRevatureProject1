@@ -70,9 +70,9 @@ namespace RepoLayer
             SqlDataReader resultSet = command.ExecuteReader(); // return record/s in a different format
             
             iLog.LogStuff(e);
-            while(resultSet.Read()) // this method does the conversion that allows me to put the recond/s in a string 
+            while(resultSet.Read()) // this method goes through each row of the result set
             {
-                // a mapper just re formats the result set coming back
+                // a mapper just re formats the result set
                 Employee employee = Mapper.DataBaseToEmployee(resultSet);
                 employees.Add(employee);
             }
@@ -81,10 +81,37 @@ namespace RepoLayer
             return employees;
         }
 
-        public string ReimbursementRequest(Employee e)
+        public ReimbursementTicket ReimbursementRequest( ReimbursementTicket ticket ,Employee e)
         {
-            iLog.LogStuff(e);
-            return e.Request!;
+            
+            SqlCommand command = new SqlCommand($"insert into Reimbursement_Tickets (Type, Description, DollarAmount, Status, EmployeeId)"
+            + "VALUES (@Type, @Description, @DollarAmount, @Status, @EmployeeId)",conn);
+
+            conn.Open();
+
+            command.Parameters.AddWithValue("@Type", ticket.Type);
+            command.Parameters.AddWithValue("@Description", ticket.Description);
+            command.Parameters.AddWithValue("@DollarAmount", ticket.DollarAmount);
+            command.Parameters.AddWithValue("@Status", ticket.Status);
+            command.Parameters.AddWithValue("@EmployeeId", 9); //e.EmployeeId
+
+            int rowsAffected = command.ExecuteNonQuery();
+
+            
+            if(rowsAffected == 1)
+            {
+                iLog.LogStuff(ticket);
+                Console.WriteLine("Your reimbursement request was sent, check your status later.");
+                Console.WriteLine($"Summary\n{ticket.Request}");
+            }
+            else
+            {
+                Console.WriteLine("Your reimbursement request was unsuccessful, try again");
+                ticket = null!;
+            }
+            
+            conn.Close();
+            return ticket;
             /*if (File.Exists("SerializedPostList.json"))
             {
                 string oldPlist = File.ReadAllText("SerializedPostList.json");
@@ -110,6 +137,29 @@ namespace RepoLayer
                 iLog.LogStuff(e);
                 return e;
             }*/
+        }
+
+        public List<ReimbursementTicket> ViewPendingRequest()
+        {
+            List<ReimbursementTicket> tickets = new List<ReimbursementTicket>();
+            SqlCommand command = new SqlCommand($"Select * From Reimbursement_Tickets Where Status = @Status", conn);
+
+            conn.Open();
+
+            command.Parameters.AddWithValue("@Status", "Pending");
+
+            SqlDataReader resultSet = command.ExecuteReader(); // return record/s in a different format
+            
+            iLog.LogStuff(tickets);
+            while(resultSet.Read()) // this method goes through each row of the result set
+            {
+                // a mapper just re formats the result set
+                ReimbursementTicket ticket = Mapper.DataBaseToTickets(resultSet);
+                tickets.Add(ticket);
+            }
+            
+            conn.Close();
+            return tickets;
         }
     }
 }

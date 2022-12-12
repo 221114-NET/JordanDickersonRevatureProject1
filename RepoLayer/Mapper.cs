@@ -21,5 +21,19 @@ namespace RepoLayer
 
             return employee;
         }
+
+        internal static ReimbursementTicket DataBaseToTickets(SqlDataReader sdr)
+        {
+            // map the sql column of data for that row to a c # value
+            ReimbursementTicket ticket = new ReimbursementTicket();
+            
+            ticket.TicketId = sdr.GetInt32(0);
+            ticket.Type = sdr.GetString(1);
+            ticket.Description = sdr.GetString(2);
+            ticket.DollarAmount = sdr.GetString(3);
+            ticket.Status = sdr.GetString(4);
+
+            return ticket;
+        }
     }
 }

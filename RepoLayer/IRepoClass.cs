@@ -10,7 +10,7 @@ namespace RepoLayer
     {
         Employee SignUpRequest(Employee e);
         List <Employee> LoginRequest(Employee e);
-        string ReimbursementRequest(Employee e);
-        
+        ReimbursementTicket ReimbursementRequest(ReimbursementTicket ticket, Employee e);
+        List<ReimbursementTicket> ViewPendingRequest();
     }
 }

@@ -21,7 +21,7 @@ namespace apilayer.Controllers
             this.iBus = iBus;
        }
 
-       [HttpPost("sign-up-request")] 
+       [HttpPost("SignUpRequest")] 
        public ActionResult<Employee> SignUpRequest(Employee e)
        {
             /* Employee e
@@ -43,7 +43,7 @@ namespace apilayer.Controllers
             }
        }
 
-        [HttpGet("log-in-request")]
+        [HttpGet("LogInRequest")]
         public ActionResult<List<Employee>> LoginRequest()
         {
             // returns a list of string type because we don't need the email and password of the employee
@@ -64,16 +64,28 @@ namespace apilayer.Controllers
             return employeeList;
         }
 
-        [HttpPost("reimbursement-request")]
-        public ActionResult<Employee> ReimbursementRequest()
+        [HttpPost("ReimbursementRequest")]
+        public ActionResult<ReimbursementTicket> ReimbursementRequest( Employee e)
         {
-            return iBus.ReimbursementRequest();
+            return iBus.ReimbursementRequest(e);
         }
 
-        [HttpGet("view-pending-request")]
-        public ActionResult<string> ViewPendingRequest()
+        [HttpGet("ViewPendingRequest")]
+        public ActionResult<List<ReimbursementTicket>> ViewPendingRequest()
         {
-            return "view request";
+            List<ReimbursementTicket> tickets = iBus.ViewPendingRequest();
+
+            if(tickets.Count == 0)
+            {
+                Console.WriteLine($"There's a total of {tickets.Count} tickets.");
+                //Problem("");
+            }
+            else
+            {
+                Console.WriteLine($"There's a total of {tickets.Count} tickets.");
+                //Ok("Successfull");
+            }
+            return tickets;
         }
 
         /*[HttpGet]
