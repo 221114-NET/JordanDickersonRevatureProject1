@@ -65,7 +65,7 @@ namespace apilayer.Controllers
         }
 
         [HttpPost("reimbursement-request")]
-        public ActionResult<string> ReimbursementRequest()
+        public ActionResult<Employee> ReimbursementRequest()
         {
             return iBus.ReimbursementRequest();
         }
