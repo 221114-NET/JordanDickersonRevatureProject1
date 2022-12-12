@@ -54,7 +54,7 @@ public class BusinessClass : IBusinessClass
     public ReimbursementTicket ReimbursementRequest()
     {
         //Employee e = new Employee(1, "Finance Manager","","");
-        Employee e = new Employee(11,"Employee");
+        Employee e = new Employee(11,"Employee","4","life");
         if(e.Position!.Equals("Employee"))
         {
             ReimbursementTicket ticket = new ReimbursementTicket();

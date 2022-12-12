@@ -17,7 +17,7 @@ namespace RepoLayer
         }
 
         // add ADO.NET to push the data to the DB
-        SqlConnection conn = new SqlConnection();
+        SqlConnection conn = new SqlConnection("Server=tcp:jordanrevature.database.windows.net,1433;Initial Catalog=RevatureProject1;Persist Security Info=False;User ID=jmdickerson;Password=Basketball12!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         
         public Employee SignUpRequest(Employee e)
         {
@@ -93,7 +93,7 @@ namespace RepoLayer
             command.Parameters.AddWithValue("@Description", ticket.Description);
             command.Parameters.AddWithValue("@DollarAmount", ticket.DollarAmount);
             command.Parameters.AddWithValue("@Status", ticket.Status);
-            command.Parameters.AddWithValue("@EmployeeId", 9); //e.EmployeeId
+            command.Parameters.AddWithValue("@EmployeeId", 11); //e.EmployeeId
 
             int rowsAffected = command.ExecuteNonQuery();
 
