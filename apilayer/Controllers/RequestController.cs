@@ -88,11 +88,11 @@ namespace apilayer.Controllers
             return tickets;
         }
 
-        /*[HttpGet]
-        public string ViewUpdatedStatus(Employee e)
+        [HttpPut("UpdatePendingRequest")]
+        public ActionResult<string> UpdatePendingRequest(List<ReimbursementTicket> tickets)
         {
-            return "viewstatus";
-        }*/
+            return iBus.UpdatePendingRequest(tickets);
+        }
 
     }
 }

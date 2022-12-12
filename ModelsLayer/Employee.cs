@@ -38,16 +38,5 @@ namespace ModelsLayer
 
         [JsonPropertyName("lastname")]
         public string ?LastName{ get; set; }
-        
-        public override void viewUpdatedStatus()
-        {
-
-        }
-
-        public override void ViewPendingRequest()
-        {
-
-        }
-
     }
 }

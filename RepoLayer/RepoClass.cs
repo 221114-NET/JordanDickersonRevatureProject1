@@ -161,5 +161,32 @@ namespace RepoLayer
             conn.Close();
             return tickets;
         }
+
+        public string UpdatePendingRequest(List<ReimbursementTicket> tickets)
+        {
+            conn.Open();
+            // loops through each ticket in the tickets list
+            foreach(ReimbursementTicket ticket in tickets)
+            {
+                do{
+                    Console.WriteLine("Does the request meet the compaines rules? Type Yes or No");
+                    ticket.Status = Console.ReadLine()!.ToLower().Replace(" ","");
+                }while(!ticket.Status.Equals("yes") && !ticket.Status.Equals("no"));
+                
+                if(ticket.Status.Equals("yes"))
+                {
+                    ticket.Status = "Approved";
+                }
+                else
+                {
+                    ticket.Status = "Denied";
+                }
+                SqlCommand command = new SqlCommand($"Update Reimbursement_Tickets Set Status = @Status, Where Description = @Description", conn);
+                command.Parameters.AddWithValue("@Status", ticket.Status);
+                command.Parameters.AddWithValue("@Description", ticket.Description);
+            }
+            conn.Close();
+            return "There are no more tickets to update.";
+        }
     }
 }

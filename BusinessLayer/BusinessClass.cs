@@ -84,4 +84,9 @@ public class BusinessClass : IBusinessClass
     {
         return iRepo.ViewPendingRequest();
     }
+
+    public string UpdatePendingRequest(List<ReimbursementTicket> tickets)
+    {
+        return iRepo.UpdatePendingRequest(tickets);
+    }
 }   

@@ -12,5 +12,6 @@ namespace RepoLayer
         List <Employee> LoginRequest(Employee e);
         ReimbursementTicket ReimbursementRequest(ReimbursementTicket ticket, Employee e);
         List<ReimbursementTicket> ViewPendingRequest();
+        string UpdatePendingRequest(List<ReimbursementTicket> tickets);
     }
 }
