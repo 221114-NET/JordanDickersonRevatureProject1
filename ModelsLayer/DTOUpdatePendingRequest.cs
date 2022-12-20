@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace ModelsLayer
 {
-    public abstract class EmployeeAbstract
+    public class DTOUpdatePendingRequest
     {
-
+        public string? Status {get; set;}
+        public string? Description {get; set;}
     }
 }

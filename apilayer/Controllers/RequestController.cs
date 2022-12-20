@@ -85,9 +85,11 @@ namespace apilayer.Controllers
 
 
         [HttpPatch("UpdatePendingRequest")]
-        public ActionResult<string> UpdatePendingRequest(List<ReimbursementTicket> tickets)
+        public ActionResult<string> UpdatePendingRequest(DTOUpdatePendingRequest dtoUpdatePendingRequest)
         {
-            return iBus.UpdatePendingRequest(tickets);
+            string description = dtoUpdatePendingRequest.Description!;
+            string status = dtoUpdatePendingRequest.Status!;
+            return iBusinessUpdatePendingRequest.UpdatePendingRequest(description, status);
         }
 
 
@@ -95,11 +97,7 @@ namespace apilayer.Controllers
         [HttpGet("ViewPendingRequest")]
         public ActionResult<List<ReimbursementTicket>> ViewPendingRequest()
         {
-            tickets = iBus.ViewPendingRequest();
-
-            UpdatePendingRequest(tickets);
-
-            return tickets!;
+            return iBusinessClassViewPendingRequest.ViewPendingRequest();
         }
 
         
@@ -107,16 +105,12 @@ namespace apilayer.Controllers
         [HttpGet("ViewAllMyTickets")]
         public ActionResult<List<ReimbursementTicket>> ViewAllTickets()
         {
-            List<ReimbursementTicket> tickets = iBus.ViewAllTickets();
+            /*List<ReimbursementTicket> tickets = iBus.ViewAllTickets();
 
             if(tickets.Count == 0)
             {
                 Console.WriteLine($"You don't have any tickets to view");
                 //Problem("");
-            }
-            else if(tickets == null)
-            {
-                Console.WriteLine("You must be an Employee");
             }
             else
             {
@@ -126,8 +120,8 @@ namespace apilayer.Controllers
                     Console.WriteLine(ticket.Request);
                 }
                 //Ok("Successfull");
-            }
-            return tickets!;
+            }*/
+            return iBusinessClassViewAllMyTickets.ViewAllMyTickets();
         }
 
 

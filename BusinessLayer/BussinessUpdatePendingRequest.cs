@@ -13,5 +13,10 @@ namespace BusinessLayer
         {
             iRepoUpdatePendingRequest = iRepo;
         }
+
+         public string UpdatePendingRequest(string description,string status)
+         {
+            return iRepoUpdatePendingRequest.UpdatePendingRequest(description,status);
+         }
     }
 }

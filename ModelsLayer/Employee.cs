@@ -6,7 +6,8 @@ using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 namespace ModelsLayer
 {
-    public class Employee : EmployeeAbstract
+    // DTOEmployee
+    public class Employee
     {
         public Employee(){}
         // constructor for employee object to post data into it
