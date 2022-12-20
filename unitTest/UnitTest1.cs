@@ -3,7 +3,7 @@ using BusinessLayer;
 using ModelsLayer;
 namespace unitTest;
 
-public class UnitTest1
+/*public class UnitTest1
 {
     [Fact]
     public void SignUpTest()
@@ -32,4 +32,4 @@ public class UnitTest1
 
         Assert.Equal(e, e);
     }
-}
+}*/

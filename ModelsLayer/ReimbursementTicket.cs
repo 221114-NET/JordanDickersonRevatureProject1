@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ModelsLayer
 {
-    public class ReimbursementTicket : ReimbursementTicketAbstract
+    public class ReimbursementTicket
     {
         [JsonPropertyName("ticketid")]
         public int ?TicketId{ get; set; }
@@ -22,12 +22,27 @@ namespace ModelsLayer
         public string ?Description{ get; set; }
 
         [JsonPropertyName("status")]
-        public string ?Status{ get; set; }
+        public string ?Status{ get; set; } = "Pending";
 
         [JsonPropertyName("request")]
         public string ?Request{ get; set; }
 
-        public override string ReimbursementRequest()
+        public ReimbursementTicket()
+        {
+
+        }
+
+        public ReimbursementTicket(int ticketId, string type, string dollarAmount, string description, string status, string request)
+        {
+            TicketId = ticketId;
+            Type = type;
+            DollarAmount = dollarAmount;
+            Description = description;
+            Status = status;
+            Request = request;
+        }
+
+        /*public override string ReimbursementRequest()
         {
             // do while loop for type validation
             do{
@@ -51,6 +66,6 @@ namespace ModelsLayer
             Status = "Pending";
 
             return Request = $"Ticket Type: {Type} \nAmount: {DollarAmount} \nDescription: {Description} \nStatus: {Status}";
-        }
+        }*/
     }
 }

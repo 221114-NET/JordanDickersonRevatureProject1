@@ -17,69 +17,10 @@ namespace RepoLayer
         }
 
         // add ADO.NET to push the data to the DB
-        SqlConnection conn = new SqlConnection("Server=tcp:jordanrevature.database.windows.net,1433;Initial Catalog=RevatureProject1;Persist Security Info=False;User ID=jmdickerson;Password=Basketball12!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+        SqlConnection conn = new SqlConnection("");
         
-        public Employee SignUpRequest(Employee e)
-        {
-            
-            SqlCommand command = new SqlCommand($"insert into Employees(Email, Password, Position, FirstName, LastName)"
-            + $"SELECT * from (SELECT @Email as Email,"
-            + $" @Password as Password,"
-            + $" @Position as Position,"
-            + $" @FirstName as FirstName,"
-            + $" @LastName as LastName) as new_value"
-            + $" WHERE NOT EXISTS("
-            + $" SELECT Email FROM Employees WHERE"
-            + $" Email = @Email);", conn);
-
-            // open connection
-            conn.Open();
-
-            // prevent sql injection
-            command.Parameters.AddWithValue("@Email", e.Email);
-            command.Parameters.AddWithValue("@Password", e.Password);
-            command.Parameters.AddWithValue("@Position", e.Position);
-            command.Parameters.AddWithValue("@FirstName", e.FirstName);
-            command.Parameters.AddWithValue("@LastName", e.LastName);
-            int rowsAffected = command.ExecuteNonQuery();
-
-            
-            if(rowsAffected == 1)
-            {
-                iLog.LogStuff(e);
-            }
-            else
-            {
-                Console.WriteLine("Another employee already uses this email, sign up using a different email.");
-                e = null!;
-            }
-           
-            conn.Close();
-            return e;
-        }
-        public List<Employee> LoginRequest(Employee e)
-        {
-            List<Employee> employees = new List<Employee>();
-            SqlCommand command = new SqlCommand($"Select EmployeeId, Position, FirstName, LastName From Employees Where Email = @Email AND Password = @Password", conn);
-
-            conn.Open();
-
-            command.Parameters.AddWithValue("@Email", e.Email);
-            command.Parameters.AddWithValue("@Password", e.Password);
-
-            SqlDataReader resultSet = command.ExecuteReader(); // return record/s in a different format
-            
-            iLog.LogStuff(e);
-            while(resultSet.Read()) // this method goes through each row of the result set
-            {
-                // a mapper just re formats the result set
-                Employee employee = Mapper.DataBaseToEmployee(resultSet);
-                employees.Add(employee);
-            }
-            
-            conn.Close();
-            return employees;
-        }
+        
+        
 
         public ReimbursementTicket ReimbursementRequest( ReimbursementTicket ticket ,Employee e)
         {

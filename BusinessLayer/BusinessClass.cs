@@ -5,35 +5,11 @@ using ModelsLayer;
 using RepoLayer;
 public class BusinessClass : IBusinessClass
 {
-    // dependency injection used with Ilogin interface
-    //private readonly Ilogin? loginInjection;
-    //RepoLogger repo = new RepoLogger();
-    private readonly IRepoClass iRepo; // dependency injection
+    private readonly IRepoClass iRepo;
 
     public BusinessClass(IRepoClass iRepo){ // constructor for di
         this.iRepo = iRepo;
     }
-
-    public Employee SignUpRequest(Employee e) // client enters the email and password to sign up
-    {
-        Console.WriteLine("What is your email?");
-        e.Email = Console.ReadLine()!;
-
-        Console.WriteLine("Create a password.");
-        e.Password = Console.ReadLine()!;
-
-        e.Position = "Employee";
-
-        Console.WriteLine("Enter your first name.");
-        e.FirstName = Console.ReadLine()!;
-
-        Console.WriteLine("Enter your last name.");
-        e.LastName = Console.ReadLine()!;
-
-        return iRepo.SignUpRequest(e);
-    }
-
-
     
     public List<Employee> LoginRequest()
     {

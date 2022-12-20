@@ -480,4 +480,5 @@ $RECYCLE.BIN/
 *.png
 
 *.env
+appsettings.Development.json
 

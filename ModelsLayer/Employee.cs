@@ -10,6 +10,12 @@ namespace ModelsLayer
     {
         public Employee(){}
         // constructor for employee object to post data into it
+        public Employee(string email, string password)
+        {
+            Email = email;
+            Password = password;
+        }
+        
         public Employee(int EmployeeId, string Position){
             this.EmployeeId = EmployeeId;
             this.Position = Position;

@@ -20,8 +20,25 @@ public class Program
 
         //register di ------------------------------------------------------------
         // we have to register denpendency injection because we need to tell the builder which class implements the said interface
-        builder.Services.AddScoped<IBusinessClass, BusinessClass>(); 
+        builder.Services.AddScoped<IBusinessClassSignUpRequest, BusinessClassSignUpRequest>();
+        builder.Services.AddScoped<IBusinessClassLogInRequest, BusinessClassLogInRequest>();
+        builder.Services.AddScoped<IBusinessClassReimbursementRequest, BusinessClassReimbursementRequest>();
+        builder.Services.AddScoped<IBussinessUpdatePendingRequest, BussinessUpdatePendingRequest>();
+        builder.Services.AddScoped<IBusinessClassViewPendingRequest, BusinessClassViewPendingRequest>();
+        builder.Services.AddScoped<IBusinessClassFilterMyTickets, BusinessClassFilterMyTickets>();
+        builder.Services.AddScoped<IBusinessClassEditNameRequest, BusinessClassEditNameRequest>();
+        builder.Services.AddScoped<IBusinessClass, BusinessClass>();
+        
+        builder.Services.AddScoped<IRepoClassSignUpRequest, RepoClassSignUpRequest>();
+        builder.Services.AddScoped<IRepoClassLogInRequest, RepoClassLogInRequest>();
+        builder.Services.AddScoped<IRepoClassReimbursementRequest, RepoClassReimbursementRequest>();
+        builder.Services.AddScoped<IRepoUpdatePendingRequest, RepoUpdatePendingRequest>();
+        builder.Services.AddScoped<IRepoClassViewPendingRequest, RepoClassViewPendingRequest>();
+        builder.Services.AddScoped<IRepoClassViewAllMyTickets, RepoClassViewAllMyTickets>();
+        builder.Services.AddScoped<IRepoClassFilterMyTickets, RepoClassFilterMyTickets>();
+        builder.Services.AddScoped<IRepoClassEditNameRequest, RepoClassEditNameRequest>();
         builder.Services.AddScoped<IRepoClass, RepoClass>();
+
         builder.Services.AddSingleton<IMyLogger, MyLogger>();
         // ------------------------------------------------------------------------
 

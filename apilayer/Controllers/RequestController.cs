@@ -14,59 +14,83 @@ namespace apilayer.Controllers
     
     public class RequestController : ControllerBase
     {
-
-        List<ReimbursementTicket> tickets = new List<ReimbursementTicket>();
-       private readonly IBusinessClass iBus; // dependency injection
-
-       public RequestController(IBusinessClass iBus) // constructor for di
-       { 
+       private readonly IBusinessClass iBus; // dependency injection\
+       private readonly IBusinessClassSignUpRequest iBusinessClassSignUpRequest;
+       private readonly IBusinessClassLogInRequest iBusinessClassLogInRequest;
+       private readonly IBusinessClassReimbursementRequest iBusinessClassReimbursementRequest;
+       private readonly IBussinessUpdatePendingRequest iBusinessUpdatePendingRequest;
+       private readonly IBusinessClassViewPendingRequest iBusinessClassViewPendingRequest;     
+       private readonly IBussinessClassViewAllMyTickets iBusinessClassViewAllMyTickets; 
+       private readonly IBusinessClassFilterMyTickets iBusinessClassFilterMyTickets;
+       private readonly IBusinessClassEditNameRequest iBusinessClassEditNameRequest; 
+        // constructor for di
+       public RequestController(IBusinessClassSignUpRequest iBusinessClassSignUpRequest,
+            IBusinessClassLogInRequest iBusinessClassLogInRequest, IBusinessClassReimbursementRequest iBusinessClassReimbursementRequest,
+            IBussinessUpdatePendingRequest iBusinessUpdatePendingRequest, IBusinessClassViewPendingRequest iBusinessClassViewPendingRequest
+            ,IBussinessClassViewAllMyTickets iBusinessClassViewAllMyTickets, IBusinessClassFilterMyTickets iBusinessClassFilterMyTickets
+            ,IBusinessClassEditNameRequest iBusinessClassEditNameRequest
+            ,IBusinessClass iBus) 
+       {
+            this.iBusinessClassSignUpRequest = iBusinessClassSignUpRequest;
+            this.iBusinessClassLogInRequest = iBusinessClassLogInRequest;
+            this.iBusinessClassReimbursementRequest = iBusinessClassReimbursementRequest; 
+            this.iBusinessUpdatePendingRequest = iBusinessUpdatePendingRequest;
+            this.iBusinessClassViewPendingRequest = iBusinessClassViewPendingRequest;
+            this.iBusinessClassViewAllMyTickets = iBusinessClassViewAllMyTickets;
+            this.iBusinessClassFilterMyTickets = iBusinessClassFilterMyTickets;
+            this.iBusinessClassEditNameRequest = iBusinessClassEditNameRequest;
             this.iBus = iBus;
        }
 
-       [HttpPost("SignUpRequest")] 
+
+
+       [HttpPost("SignUpRequest")]
        public ActionResult<Employee> SignUpRequest(Employee e)
        {
-            if(e != null)
-            {
-                iBus.SignUpRequest(e);
-                return Created($"https://localhost:5255/api/employee/getemployee/{e.EmployeeId}", e);
-            }
-            else{
-                return iBus.SignUpRequest(e!);
-            }
+            iBusinessClassSignUpRequest.SignUpRequest(e);
+            return Created($"https://localhost:5255/api/employee/getemployee/{e.EmployeeId}", e);    
        }
 
+
+
         [HttpGet("LogInRequest")]
-        public ActionResult<List<Employee>> LoginRequest()
+        public ActionResult<Employee> LogInRequest()
         {
-            // returns a list of string type because we don't need the email and password of the employee
+            string userEmail = "jjj@yahoo.com";
+            string userPassword = "jjj";
+            return iBusinessClassLogInRequest.LogInRequest(userEmail, userPassword);
 
-            List<Employee> employeeList = iBus.LoginRequest();
-
-            if(employeeList.Count == 0)
+            /*if(employeeList.Count == 0)
             {
                 Console.WriteLine("Invalid Email and Password combination.");
                 //Problem("");
             }
             else
             {
-                Console.WriteLine($"Welcome back {employeeList[0].FirstName} {employeeList[0].LastName}.");
+                Console.WriteLine($"Welcome back.");
                 //Ok("Successfull");
             }
 
-            return employeeList;
+            return employeeList;*/
         }
 
+
+
         [HttpPost("ReimbursementRequest")]
-        public ActionResult<ReimbursementTicket> ReimbursementRequest()
+        public ActionResult<ReimbursementTicket> ReimbursementRequest(ReimbursementTicket ticket)
         {
-            ReimbursementTicket request = iBus.ReimbursementRequest();
-            if(request == null)
-            {
-                Console.WriteLine("You must be an Employee");
-            }
-            return request!;  
+            int employeeId = 11;
+            return iBusinessClassReimbursementRequest.ReimbursementRequest(ticket, employeeId); 
         }
+
+
+        [HttpPatch("UpdatePendingRequest")]
+        public ActionResult<string> UpdatePendingRequest(List<ReimbursementTicket> tickets)
+        {
+            return iBus.UpdatePendingRequest(tickets);
+        }
+
+
 
         [HttpGet("ViewPendingRequest")]
         public ActionResult<List<ReimbursementTicket>> ViewPendingRequest()
@@ -78,13 +102,9 @@ namespace apilayer.Controllers
             return tickets!;
         }
 
-        [HttpPatch("UpdatePendingRequest")]
-        public ActionResult<string> UpdatePendingRequest(List<ReimbursementTicket> tickets)
-        {
-            return iBus.UpdatePendingRequest(tickets);
-        }
+        
 
-        [HttpGet("ViewAllTickets")]
+        [HttpGet("ViewAllMyTickets")]
         public ActionResult<List<ReimbursementTicket>> ViewAllTickets()
         {
             List<ReimbursementTicket> tickets = iBus.ViewAllTickets();
@@ -110,7 +130,10 @@ namespace apilayer.Controllers
             return tickets!;
         }
 
-        [HttpGet("FilterTickets")]
+
+
+
+        [HttpGet("FilterMyTickets")]
         public ActionResult<List<ReimbursementTicket>> FilterTickets()
         {
             List<ReimbursementTicket> tickets = iBus.FilterTickets();
@@ -135,6 +158,8 @@ namespace apilayer.Controllers
             }
             return tickets!;
         }
+
+
 
         [HttpPatch("EditNameRequest")]
         public ActionResult<Employee> EditNameRequest()

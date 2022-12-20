@@ -7,7 +7,6 @@ namespace BusinessLayer
 {
     public interface IBusinessClass
     {
-        Employee SignUpRequest(Employee e);
         List<Employee> LoginRequest();
         ReimbursementTicket ReimbursementRequest();
         List<ReimbursementTicket> ViewPendingRequest();
