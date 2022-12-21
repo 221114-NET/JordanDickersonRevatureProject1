@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using RepoLayer;
+using ModelsLayer;
 
 namespace BusinessLayer
 {
@@ -13,6 +14,11 @@ namespace BusinessLayer
         public BusinessClassFilterMyTickets(IRepoClassFilterMyTickets iRepo)
         {
             this.iRepo = iRepo;
+        }
+
+        public List<ReimbursementTicket> FilterMyTickets(string email, string status)
+        {
+            return iRepo.FilterMyTickets(email,status);
         }
         
     }

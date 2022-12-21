@@ -121,7 +121,8 @@ namespace apilayer.Controllers
                 }
                 //Ok("Successfull");
             }*/
-            return iBusinessClassViewAllMyTickets.ViewAllMyTickets();
+            string email = "jd@yahoo.com";
+            return iBusinessClassViewAllMyTickets.ViewAllMyTickets(email);
         }
 
 
@@ -130,7 +131,7 @@ namespace apilayer.Controllers
         [HttpGet("FilterMyTickets")]
         public ActionResult<List<ReimbursementTicket>> FilterTickets()
         {
-            List<ReimbursementTicket> tickets = iBus.FilterTickets();
+            /*List<ReimbursementTicket> tickets = iBus.FilterTickets();
 
             if(tickets.Count == 0)
             {
@@ -149,24 +150,29 @@ namespace apilayer.Controllers
                     Console.WriteLine(ticket.Request);
                 }
                 //Ok("Successfull");
-            }
-            return tickets!;
+            }*/
+            string email = "jd@yahoo.com";
+            string status = "Pending";
+            return iBusinessClassFilterMyTickets.FilterMyTickets(email,status);
         }
 
 
 
         [HttpPatch("EditNameRequest")]
-        public ActionResult<Employee> EditNameRequest()
+        public ActionResult<string> EditNameRequest(DTOEditNameRequest dTOEditNameRequest)
         {
-            Employee e = iBus.EditNameRequest();
+            /*Employee e = iBus.EditNameRequest();
             if(e == null)
             {
                 Console.WriteLine("You must be an Employee");
             }
             else{
                 Console.WriteLine($"{e.FirstName} and {e.LastName} has be updated.");
-            }
-            return e!;
+            }*/
+            string email = "jd@yahoo.com";
+            string firstName = dTOEditNameRequest.FirstName!;
+            string lastName = dTOEditNameRequest.LastName!;
+            return iBusinessClassEditNameRequest.EditNameRequest(email,firstName, lastName);
         }
 
     }

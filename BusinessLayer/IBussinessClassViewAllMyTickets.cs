@@ -8,6 +8,6 @@ namespace BusinessLayer
 {
     public interface IBussinessClassViewAllMyTickets
     {
-        public List<ReimbursementTicket> ViewAllMyTickets();
+        public List<ReimbursementTicket> ViewAllMyTickets(string email);
     }
 }

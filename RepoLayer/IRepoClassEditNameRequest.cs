@@ -7,6 +7,6 @@ namespace RepoLayer
 {
     public interface IRepoClassEditNameRequest
     {
-        
+        public string EditNameRequest(string email, string? firstName, string? lastName);
     }
 }

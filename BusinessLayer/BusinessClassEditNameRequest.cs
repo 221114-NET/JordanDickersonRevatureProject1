@@ -14,6 +14,11 @@ namespace BusinessLayer
         {
             this.iRepo = iRepo;
         }
+
+        public string EditNameRequest(string email, string? firstName, string? lastName)
+        {
+            return iRepo.EditNameRequest(email, firstName,lastName);
+        }
         
     }
 }

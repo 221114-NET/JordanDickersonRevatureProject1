@@ -16,16 +16,16 @@ namespace RepoLayer
         }
 
         
-        public List<ReimbursementTicket> ViewAllMyTickets()
+        public List<ReimbursementTicket> ViewAllMyTickets(string email)
         {
             SqlConnection conn = new SqlConnection("");
 
             List<ReimbursementTicket> tickets = new List<ReimbursementTicket>();
-            SqlCommand command = new SqlCommand($"Select * From Reimbursement_Tickets Where EmployeeId = @EmployeeId", conn);
+            SqlCommand command = new SqlCommand($"Select TicketId, Type, Description, DollarAmount, Status, Reimbursement_Tickets.EmployeeId From Reimbursement_Tickets Left Join Employees On Employees.EmployeeId = Reimbursement_Tickets.EmployeeId Where Employees.Email = @Email", conn);
 
             conn.Open();
 
-            command.Parameters.AddWithValue("@EmployeeId", e.EmployeeId);
+            command.Parameters.AddWithValue("@Email", email);
 
             SqlDataReader resultSet = command.ExecuteReader(); // return record/s in a different format
             

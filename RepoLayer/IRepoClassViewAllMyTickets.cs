@@ -8,6 +8,6 @@ namespace RepoLayer
 {
     public interface IRepoClassViewAllMyTickets
     {
-        public List<ReimbursementTicket> ViewAllMyTickets();
+        public List<ReimbursementTicket> ViewAllMyTickets(string email);
     }
 }

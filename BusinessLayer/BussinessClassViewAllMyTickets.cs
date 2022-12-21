@@ -15,9 +15,9 @@ namespace BusinessLayer
             this.iRepo = iRepo;
         }
 
-        public List<ReimbursementTicket> ViewAllMyTickets()
+        public List<ReimbursementTicket> ViewAllMyTickets(string email)
         {
-            return iRepo.ViewAllMyTickets();
+            return iRepo.ViewAllMyTickets(email);
         }
         
     }
