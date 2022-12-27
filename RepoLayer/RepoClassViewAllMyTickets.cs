@@ -37,6 +37,12 @@ namespace RepoLayer
                 tickets.Add(ticket);
             }
             Console.WriteLine($"Number of tickets returned {tickets.Count}");
+
+            foreach(ReimbursementTicket ticket in tickets)
+            {
+                Console.WriteLine($"\n{ticket.Request}");
+            }
+
             conn.Close();
             return tickets;
         }

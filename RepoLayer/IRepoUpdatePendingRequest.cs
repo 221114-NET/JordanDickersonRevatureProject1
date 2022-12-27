@@ -7,6 +7,6 @@ namespace RepoLayer
 {
     public interface IRepoUpdatePendingRequest
     {
-        public string UpdatePendingRequest(string description,string status);
+        public string UpdatePendingRequest(string status,int ticketId);
     }
 }

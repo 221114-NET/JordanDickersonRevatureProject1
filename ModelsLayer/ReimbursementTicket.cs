@@ -23,7 +23,7 @@ namespace ModelsLayer
         public string ?Description{ get; set; }
 
         [JsonPropertyName("status")]
-        public string ?Status{ get; set; } = "Pending";
+        public string ?Status{ get; set; }
 
         [JsonPropertyName("request")]
         public string ?Request{ get; set; }

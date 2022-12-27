@@ -36,6 +36,11 @@ namespace RepoLayer
                 ReimbursementTicket ticket = Mapper.DataBaseToTickets(resultSet);
                 tickets.Add(ticket);
             }
+
+            foreach(ReimbursementTicket ticket in tickets)
+            {
+                Console.WriteLine($"\n{ticket.Request}");
+            }
             
             conn.Close();
             return tickets;

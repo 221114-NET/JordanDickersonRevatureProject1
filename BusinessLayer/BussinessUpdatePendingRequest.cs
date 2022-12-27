@@ -14,9 +14,9 @@ namespace BusinessLayer
             iRepoUpdatePendingRequest = iRepo;
         }
 
-         public string UpdatePendingRequest(string description,string status)
+         public string UpdatePendingRequest(string status,int ticketId)
          {
-            return iRepoUpdatePendingRequest.UpdatePendingRequest(description,status);
+            return iRepoUpdatePendingRequest.UpdatePendingRequest(status,ticketId);
          }
     }
 }

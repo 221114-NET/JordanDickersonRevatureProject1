@@ -10,7 +10,7 @@ namespace BusinessLayer
     public class BusinessClassLogInRequest : IBusinessClassLogInRequest
     {
         private readonly IRepoClassLogInRequest iRepoClassLogInRequest;
-        BusinessClassLogInRequest(IRepoClassLogInRequest iRepoClassLogInRequest)
+        public BusinessClassLogInRequest(IRepoClassLogInRequest iRepoClassLogInRequest)
         {
             this.iRepoClassLogInRequest = iRepoClassLogInRequest;
         }

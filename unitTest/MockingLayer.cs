@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace unitTest
 {
-    public class MockingLayer : IRepoClass
+    public class MockingLayer 
     {
         List<Employee> employees = new List<Employee>();
         List<ReimbursementTicket> tickets = new List<ReimbursementTicket>();

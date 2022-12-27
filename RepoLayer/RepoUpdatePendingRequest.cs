@@ -14,18 +14,30 @@ namespace RepoLayer
             this.iLog = iLog;
         }
 
-        public string UpdatePendingRequest(string description,string status)
+        public string UpdatePendingRequest(string status,int ticketId)
         {
             SqlConnection conn = new SqlConnection("");
 
             conn.Open();
             
-            SqlCommand command = new SqlCommand($"Update Reimbursement_Tickets Set Status = @Status, Where Description = @Description", conn);
+            SqlCommand command = new SqlCommand($"UPDATE Reimbursement_Tickets SET Status = @Status Where TicketId = @TicketId", conn);
+
+            command.Parameters.AddWithValue("@TicketId", ticketId);
             command.Parameters.AddWithValue("@Status", status);
-            command.Parameters.AddWithValue("@Description", description);
-            
-            conn.Close();
-            return "";
+
+            int rowsAffected = command.ExecuteNonQuery();
+
+            if(rowsAffected == 1)
+            {
+                conn.Close();
+                iLog.LogStuff("UpdatePendingRequest");
+                return "Pending request updated.";
+            }
+            else
+            {
+                conn.Close();
+                return "Nothing was updated.";
+            }
         }
     }
 }

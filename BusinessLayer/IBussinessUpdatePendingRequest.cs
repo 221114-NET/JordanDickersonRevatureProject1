@@ -8,6 +8,6 @@ namespace BusinessLayer
 {
     public interface IBussinessUpdatePendingRequest
     {
-        public string UpdatePendingRequest(string description,string status);
+        public string UpdatePendingRequest(string status,int ticketId);
     }
 }

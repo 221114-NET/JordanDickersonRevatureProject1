@@ -36,7 +36,7 @@ namespace RepoLayer
             // prevent sql injection
             command.Parameters.AddWithValue("@Email", e.Email);
             command.Parameters.AddWithValue("@Password", e.Password);
-            command.Parameters.AddWithValue("@Position", e.Position);
+            command.Parameters.AddWithValue("@Position", "Employee");
             command.Parameters.AddWithValue("@FirstName", e.FirstName);
             command.Parameters.AddWithValue("@LastName", e.LastName);
             int rowsAffected = command.ExecuteNonQuery();

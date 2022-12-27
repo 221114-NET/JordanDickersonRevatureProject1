@@ -14,7 +14,6 @@ namespace apilayer.Controllers
     
     public class RequestController : ControllerBase
     {
-       private readonly IBusinessClass iBus; // dependency injection\
        private readonly IBusinessClassSignUpRequest iBusinessClassSignUpRequest;
        private readonly IBusinessClassLogInRequest iBusinessClassLogInRequest;
        private readonly IBusinessClassReimbursementRequest iBusinessClassReimbursementRequest;
@@ -28,8 +27,7 @@ namespace apilayer.Controllers
             IBusinessClassLogInRequest iBusinessClassLogInRequest, IBusinessClassReimbursementRequest iBusinessClassReimbursementRequest,
             IBussinessUpdatePendingRequest iBusinessUpdatePendingRequest, IBusinessClassViewPendingRequest iBusinessClassViewPendingRequest
             ,IBussinessClassViewAllMyTickets iBusinessClassViewAllMyTickets, IBusinessClassFilterMyTickets iBusinessClassFilterMyTickets
-            ,IBusinessClassEditNameRequest iBusinessClassEditNameRequest
-            ,IBusinessClass iBus) 
+            ,IBusinessClassEditNameRequest iBusinessClassEditNameRequest) 
        {
             this.iBusinessClassSignUpRequest = iBusinessClassSignUpRequest;
             this.iBusinessClassLogInRequest = iBusinessClassLogInRequest;
@@ -39,7 +37,6 @@ namespace apilayer.Controllers
             this.iBusinessClassViewAllMyTickets = iBusinessClassViewAllMyTickets;
             this.iBusinessClassFilterMyTickets = iBusinessClassFilterMyTickets;
             this.iBusinessClassEditNameRequest = iBusinessClassEditNameRequest;
-            this.iBus = iBus;
        }
 
 
@@ -56,8 +53,8 @@ namespace apilayer.Controllers
         [HttpGet("LogInRequest")]
         public ActionResult<Employee> LogInRequest()
         {
-            string userEmail = "jjj@yahoo.com";
-            string userPassword = "jjj";
+            string userEmail = "jordan@gmail.com";
+            string userPassword = "password";
             return iBusinessClassLogInRequest.LogInRequest(userEmail, userPassword);
 
             /*if(employeeList.Count == 0)
@@ -79,7 +76,7 @@ namespace apilayer.Controllers
         [HttpPost("ReimbursementRequest")]
         public ActionResult<ReimbursementTicket> ReimbursementRequest(ReimbursementTicket ticket)
         {
-            int employeeId = 11;
+            int employeeId = 15;
             return iBusinessClassReimbursementRequest.ReimbursementRequest(ticket, employeeId); 
         }
 
@@ -87,9 +84,10 @@ namespace apilayer.Controllers
         [HttpPatch("UpdatePendingRequest")]
         public ActionResult<string> UpdatePendingRequest(DTOUpdatePendingRequest dtoUpdatePendingRequest)
         {
-            string description = dtoUpdatePendingRequest.Description!;
             string status = dtoUpdatePendingRequest.Status!;
-            return iBusinessUpdatePendingRequest.UpdatePendingRequest(description, status);
+            int ticketId = dtoUpdatePendingRequest.TicketId!;
+            //int ticketId = 1;
+            return iBusinessUpdatePendingRequest.UpdatePendingRequest(status, ticketId);
         }
 
 
@@ -152,7 +150,7 @@ namespace apilayer.Controllers
                 //Ok("Successfull");
             }*/
             string email = "jd@yahoo.com";
-            string status = "Pending";
+            string status = "Approved";
             return iBusinessClassFilterMyTickets.FilterMyTickets(email,status);
         }
 
