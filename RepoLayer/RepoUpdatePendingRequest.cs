@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace RepoLayer
 {
@@ -16,7 +17,8 @@ namespace RepoLayer
 
         public string UpdatePendingRequest(string status,int ticketId)
         {
-            SqlConnection conn = new SqlConnection("");
+            string AzureConnectionString = new ConfigurationBuilder().AddJsonFile("appsettings.Development.json").Build().GetSection("ConnectionStrings")["MyDatabase"]!;
+            SqlConnection conn = new SqlConnection(AzureConnectionString);
 
             conn.Open();
             

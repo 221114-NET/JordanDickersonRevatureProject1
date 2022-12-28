@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using ModelsLayer;
 
 namespace RepoLayer
@@ -18,7 +19,8 @@ namespace RepoLayer
         
         public List<ReimbursementTicket> ViewPendingRequest()
         {
-            SqlConnection conn = new SqlConnection("");
+            string AzureConnectionString = new ConfigurationBuilder().AddJsonFile("appsettings.Development.json").Build().GetSection("ConnectionStrings")["MyDatabase"]!;
+            SqlConnection conn = new SqlConnection(AzureConnectionString);
 
             List<ReimbursementTicket> tickets = new List<ReimbursementTicket>();
             SqlCommand command = new SqlCommand($"Select * From Reimbursement_Tickets Where Status = @Status", conn);

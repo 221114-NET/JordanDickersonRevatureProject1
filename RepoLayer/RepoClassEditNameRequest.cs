@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using ModelsLayer;
+using Microsoft.Extensions.Configuration;
 
 namespace RepoLayer
 {
@@ -16,7 +17,8 @@ namespace RepoLayer
         }
         public string EditNameRequest(string email ,string? firstName, string? lastName)
         {
-            SqlConnection conn = new SqlConnection("");
+            string AzureConnectionString = new ConfigurationBuilder().AddJsonFile("appsettings.Development.json").Build().GetSection("ConnectionStrings")["MyDatabase"]!;
+            SqlConnection conn = new SqlConnection(AzureConnectionString);
             conn.Open();
 
             SqlCommand command = new SqlCommand($"UPDATE Employees SET FirstName = @FirstName, LastName = @LastName Where Email = @Email", conn);

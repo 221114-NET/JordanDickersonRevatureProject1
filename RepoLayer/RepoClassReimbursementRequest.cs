@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using ModelsLayer;
 
 namespace RepoLayer
@@ -17,7 +18,9 @@ namespace RepoLayer
 
         public ReimbursementTicket ReimbursementRequest(ReimbursementTicket ticket, int employeeId)
         {
-            SqlConnection conn = new SqlConnection("");
+            string AzureConnectionString = new ConfigurationBuilder().AddJsonFile("appsettings.Development.json").Build().GetSection("ConnectionStrings")["MyDatabase"]!;
+            SqlConnection conn = new SqlConnection(AzureConnectionString);
+            
             SqlCommand command = new SqlCommand($"insert into Reimbursement_Tickets (Type, Description, DollarAmount, Status, EmployeeId)"
             + "VALUES (@Type, @Description, @DollarAmount, @Status, @EmployeeId)",conn);
 

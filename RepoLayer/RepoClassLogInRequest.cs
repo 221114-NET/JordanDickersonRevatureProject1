@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using ModelsLayer;
 
 namespace RepoLayer
@@ -20,7 +21,9 @@ namespace RepoLayer
             Employee e = new Employee();
             try
             {
-                 SqlConnection conn = new SqlConnection("");
+                string AzureConnectionString = new ConfigurationBuilder().AddJsonFile("appsettings.Development.json").Build().GetSection("ConnectionStrings")["MyDatabase"]!;
+                SqlConnection conn = new SqlConnection(AzureConnectionString);
+            
                 SqlCommand command = new SqlCommand($"Select EmployeeId, Position, FirstName, LastName From Employees Where Email = @Email AND Password = @Password", conn);
 
                 conn.Open();
