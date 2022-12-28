@@ -4,6 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using RepoLayer;
 using ModelsLayer;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace BusinessLayer
 {
@@ -14,9 +18,37 @@ namespace BusinessLayer
         {
             this.iRepoClassLogInRequest = iRepoClassLogInRequest;
         }
-        public Employee LogInRequest(string userEmail, string userPassword)
+
+        public string LogInRequest(string userEmail, string userPassword)
         {
-            return iRepoClassLogInRequest.LogInRequest(userEmail, userPassword);
+            Employee result = iRepoClassLogInRequest.LogInRequest(userEmail, userPassword);
+            if(result != null )
+            {
+                var claims = new[]
+                {
+                    new Claim(ClaimTypes.Email, userEmail),
+                    new Claim(ClaimTypes.Role, result.Position!)
+                };
+
+                var token = new JwtSecurityToken
+                (
+                    issuer: "http://localhost:5255/",
+                    audience: "http://localhost:5255/",
+                    claims: claims,
+                    expires: DateTime.UtcNow.AddHours(3),
+                    notBefore: DateTime.UtcNow,
+                    signingCredentials: new SigningCredentials(
+                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes("custom key authentication")),
+                        SecurityAlgorithms.HmacSha256)
+                );
+
+                string loginToken = new JwtSecurityTokenHandler().WriteToken(token);
+                return loginToken;
+            }
+            else
+            {
+                return "User not found";
+            }
         }
     }
 }

@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ModelsLayer;
 using BusinessLayer;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace apilayer.Controllers
 {
@@ -50,29 +53,14 @@ namespace apilayer.Controllers
 
 
 
-        [HttpGet("LogInRequest")]
-        public ActionResult<Employee> LogInRequest()
+        [HttpPost("LogInRequest")]
+        public ActionResult<DTOToken> LogInRequest(DTOLogInRequest dTOLogInRequest)
         {
-            string userEmail = "jordan@gmail.com";
-            string userPassword = "password";
-            return iBusinessClassLogInRequest.LogInRequest(userEmail, userPassword);
-
-            /*if(employeeList.Count == 0)
-            {
-                Console.WriteLine("Invalid Email and Password combination.");
-                //Problem("");
-            }
-            else
-            {
-                Console.WriteLine($"Welcome back.");
-                //Ok("Successfull");
-            }
-
-            return employeeList;*/
+            return new DTOToken(iBusinessClassLogInRequest.LogInRequest(dTOLogInRequest.Email!, dTOLogInRequest.Password!));
         }
 
 
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Employee")]
         [HttpPost("ReimbursementRequest")]
         public ActionResult<ReimbursementTicket> ReimbursementRequest(ReimbursementTicket ticket)
         {
@@ -80,7 +68,7 @@ namespace apilayer.Controllers
             return iBusinessClassReimbursementRequest.ReimbursementRequest(ticket, employeeId); 
         }
 
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Finance Manager")]
         [HttpPatch("UpdatePendingRequest")]
         public ActionResult<string> UpdatePendingRequest(DTOUpdatePendingRequest dtoUpdatePendingRequest)
         {
@@ -91,7 +79,7 @@ namespace apilayer.Controllers
         }
 
 
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Finance Manager")]
         [HttpGet("ViewPendingRequest")]
         public ActionResult<List<ReimbursementTicket>> ViewPendingRequest()
         {
@@ -99,74 +87,30 @@ namespace apilayer.Controllers
         }
 
         
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Employee")]
         [HttpGet("ViewAllMyTickets")]
         public ActionResult<List<ReimbursementTicket>> ViewAllTickets()
         {
-            /*List<ReimbursementTicket> tickets = iBus.ViewAllTickets();
-
-            if(tickets.Count == 0)
-            {
-                Console.WriteLine($"You don't have any tickets to view");
-                //Problem("");
-            }
-            else
-            {
-                Console.WriteLine($"There's a total of {tickets.Count} tickets.");
-                foreach(ReimbursementTicket ticket in tickets)
-                {
-                    Console.WriteLine(ticket.Request);
-                }
-                //Ok("Successfull");
-            }*/
             string email = "jd@yahoo.com";
             return iBusinessClassViewAllMyTickets.ViewAllMyTickets(email);
         }
 
 
 
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Employee")]
         [HttpGet("FilterMyTickets")]
         public ActionResult<List<ReimbursementTicket>> FilterTickets()
         {
-            /*List<ReimbursementTicket> tickets = iBus.FilterTickets();
-
-            if(tickets.Count == 0)
-            {
-                Console.WriteLine($"You don't have any tickets to view");
-                //Problem("");
-            }
-            else if(tickets == null)
-            {
-                Console.WriteLine("You must be an Employee");
-            }
-            else
-            {
-                Console.WriteLine($"{tickets.Count} tickets returned.");
-                foreach(ReimbursementTicket ticket in tickets)
-                {
-                    Console.WriteLine(ticket.Request);
-                }
-                //Ok("Successfull");
-            }*/
             string email = "jd@yahoo.com";
             string status = "Approved";
             return iBusinessClassFilterMyTickets.FilterMyTickets(email,status);
         }
 
 
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPatch("EditNameRequest")]
         public ActionResult<string> EditNameRequest(DTOEditNameRequest dTOEditNameRequest)
         {
-            /*Employee e = iBus.EditNameRequest();
-            if(e == null)
-            {
-                Console.WriteLine("You must be an Employee");
-            }
-            else{
-                Console.WriteLine($"{e.FirstName} and {e.LastName} has be updated.");
-            }*/
             string email = "jd@yahoo.com";
             string firstName = dTOEditNameRequest.FirstName!;
             string lastName = dTOEditNameRequest.LastName!;

@@ -8,6 +8,6 @@ namespace BusinessLayer
 {
     public interface IBusinessClassLogInRequest
     {
-        public Employee LogInRequest(string userEmail, string userPassword);
+        public string LogInRequest(string userEmail, string userPassword);
     }
 }
