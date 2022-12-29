@@ -64,7 +64,8 @@ namespace apilayer.Controllers
         [HttpPost("ReimbursementRequest")]
         public ActionResult<ReimbursementTicket> ReimbursementRequest(ReimbursementTicket ticket)
         {
-            int employeeId = 15;
+            string claimSid = ($"{this.User.FindFirst(ClaimTypes.Sid)!.Value}");
+            int employeeId = Int32.Parse(claimSid);
             return iBusinessClassReimbursementRequest.ReimbursementRequest(ticket, employeeId); 
         }
 
@@ -91,7 +92,7 @@ namespace apilayer.Controllers
         [HttpGet("ViewAllMyTickets")]
         public ActionResult<List<ReimbursementTicket>> ViewAllTickets()
         {
-            string email = "jd@yahoo.com";
+            string email = ($"{this.User.FindFirst(ClaimTypes.Email)!.Value}");
             return iBusinessClassViewAllMyTickets.ViewAllMyTickets(email);
         }
 
@@ -101,7 +102,7 @@ namespace apilayer.Controllers
         [HttpGet("FilterMyTickets")]
         public ActionResult<List<ReimbursementTicket>> FilterTickets()
         {
-            string email = "jd@yahoo.com";
+            string email = ($"{this.User.FindFirst(ClaimTypes.Email)!.Value}");
             string status = "Approved";
             return iBusinessClassFilterMyTickets.FilterMyTickets(email,status);
         }
@@ -111,7 +112,7 @@ namespace apilayer.Controllers
         [HttpPatch("EditNameRequest")]
         public ActionResult<string> EditNameRequest(DTOEditNameRequest dTOEditNameRequest)
         {
-            string email = "jd@yahoo.com";
+            string email = ($"{this.User.FindFirst(ClaimTypes.Email)!.Value}");
             string firstName = dTOEditNameRequest.FirstName!;
             string lastName = dTOEditNameRequest.LastName!;
             return iBusinessClassEditNameRequest.EditNameRequest(email,firstName, lastName);

@@ -5,6 +5,7 @@ using ModelsLayer;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.OpenApi.Models;
 
 namespace apilayer;
 
@@ -19,7 +20,6 @@ public class Program
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
 
         // JWT Auth Steps
         // Step 1 install three packages
@@ -27,6 +27,37 @@ public class Program
         // Step 3 Add builder.Services.AddAuthentication... in this file under AddSwaggerGen()
         // Step 4 Add builder.Services.AddAuthorization under AddAuthentication
         // Step 5 After the app ref vairable is defined add app.UseAuthorization() and app.UseAuthentication() under app.UseSwagger() 
+        // Step 6 Set up claims for businessclassloginrequest
+        // Step 7 Set up [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)] for http request that need it
+        // Step 8 add options => to builder.services.AddSwaggerGen()
+
+        builder.Services.AddSwaggerGen(options => 
+        {
+            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                In = ParameterLocation.Header,
+                Name = "Authorization",
+                Description = "Bearer Authentication with JWT Token",
+                Type = SecuritySchemeType.Http
+            });
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Id = "Bearer",
+                            Type = ReferenceType.SecurityScheme
+                        }
+                    },
+                    new List<string>()
+                }
+            });
+        });
+
 
         builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
         {
@@ -36,9 +67,9 @@ public class Program
                 ValidateAudience = true,
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
-                ValidIssuer = builder.Configuration["Jwt:Issuer"],
-                ValidAudience = builder.Configuration["Jwt:Audience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+                ValidIssuer = "http://localhost:5255/",
+                ValidAudience = "http://localhost:5255/",
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("custom key authentication"))
             };
         });
 

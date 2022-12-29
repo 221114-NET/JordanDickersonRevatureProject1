@@ -27,7 +27,8 @@ namespace BusinessLayer
                 var claims = new[]
                 {
                     new Claim(ClaimTypes.Email, userEmail),
-                    new Claim(ClaimTypes.Role, result.Position!)
+                    new Claim(ClaimTypes.Role, result.Position!),
+                    new Claim(ClaimTypes.Sid, result.EmployeeId.ToString()!)
                 };
 
                 var token = new JwtSecurityToken
@@ -35,7 +36,7 @@ namespace BusinessLayer
                     issuer: "http://localhost:5255/",
                     audience: "http://localhost:5255/",
                     claims: claims,
-                    expires: DateTime.UtcNow.AddHours(3),
+                    expires: DateTime.UtcNow.AddDays(3),
                     notBefore: DateTime.UtcNow,
                     signingCredentials: new SigningCredentials(
                         new SymmetricSecurityKey(Encoding.UTF8.GetBytes("custom key authentication")),
