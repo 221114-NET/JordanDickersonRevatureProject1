@@ -1,8 +1,4 @@
-function FormSignUp()
+export default function FormSignUp()
 {
-    return (
-        <div>
-            
-        </div>
-    )
+    
 }

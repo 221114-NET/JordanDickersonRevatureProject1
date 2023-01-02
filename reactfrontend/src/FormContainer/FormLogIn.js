@@ -22,6 +22,7 @@ export default function FormLogIn()
             <form onSubmit={handleSubmit}>
                 <input type="email" 
                     value={email}
+                    autoFocus
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
                 />
@@ -30,9 +31,9 @@ export default function FormLogIn()
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password" 
                 />
-                <input type="submit"
+                <button type="submit"
                     disabled = {!validateForm()}
-                />
+                ></button>
             </form>
         </div>
     );
