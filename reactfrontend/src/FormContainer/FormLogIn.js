@@ -14,7 +14,18 @@ export default function FormLogIn()
     function handleSubmit(event)
     {
         event.preventDefault();
+
+        fetch("http://localhost:5255/LogInRequest")
+        .then(res => res.json())
+        .then(
+            (result) => {}
+        )
     }
+
+    useEffect(()=> {
+        
+        .
+    })
 
     return (
         <div>
