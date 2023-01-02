@@ -8,13 +8,12 @@ using BusinessLayer;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 namespace apilayer.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-
-    
+    [ApiController]
     public class RequestController : ControllerBase
     {
        private readonly IBusinessClassSignUpRequest iBusinessClassSignUpRequest;
@@ -43,7 +42,7 @@ namespace apilayer.Controllers
        }
 
 
-
+       [EnableCors("FormPolicy")]
        [HttpPost("SignUpRequest")]
        public ActionResult<Employee> SignUpRequest(Employee e)
        {
@@ -52,7 +51,7 @@ namespace apilayer.Controllers
        }
 
 
-
+        [EnableCors("FormPolicy")]
         [HttpPost("LogInRequest")]
         public ActionResult<DTOToken> LogInRequest(DTOLogInRequest dTOLogInRequest)
         {

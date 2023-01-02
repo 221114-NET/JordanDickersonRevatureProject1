@@ -15,9 +15,22 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        // added cors policies
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("FormPolicy",
+            policy =>
+            {
+                policy.WithOrigins("http://localhost:3000/")
+                                .WithMethods("POST");
+            });
+        });
+
         // Add services to the container.
 
         builder.Services.AddControllers();
+
+        builder.Services.AddRazorPages();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
 
@@ -109,6 +122,10 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+
+        app.UseRouting();
+
+        app.UseCors();
 
         app.UseAuthorization();
         app.UseAuthentication();
