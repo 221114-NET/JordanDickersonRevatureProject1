@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect } from "react";
 import "./FormContainer.css";
 
 export default function FormLogIn()
@@ -14,7 +14,6 @@ export default function FormLogIn()
     function handleSubmit(event)
     {
         event.preventDefault();
-
     }
 
     return (
@@ -31,9 +30,9 @@ export default function FormLogIn()
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password" 
                 />
-                <button type="submit"
+                <input type="submit"
                     disabled = {!validateForm()}
-                ></button>
+                />
             </form>
         </div>
     );
