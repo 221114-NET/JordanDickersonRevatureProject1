@@ -5,14 +5,14 @@ export default function FormLogIn()
 {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errorMessage, setErrorMessage ] = useState("");
+    const [message, setMessage ] = useState("");
 
     function validateForm()
     {
         return email.length > 0 && password.length > 0;
     }
 
-    function handleSubmit(event)
+    async function handleSubmit(event)
     {
         event.preventDefault();
 
@@ -24,31 +24,35 @@ export default function FormLogIn()
         fetch("http://localhost:5255/api/Request/LogInRequest", {
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
+                'Accept': 'text/dtotoken',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(dtoLogIn)
             }).then((response) => { 
                 if(response.status >= 200 && response.status < 299)
                 {
-                    const promise = response.json();
-                    console.log(promise)
+                    console.log(response.text())
                 }               
+            
+                
+            }).then((data) => {
+                if(data !== undefined)
+                {
+                    setMessage("HI")
+                }
+                console.log(data)
+                //return data;
             }).catch(error => console.error('Error: ', error));
-        
-        /*.then(res => res.json())
-        .then(
-            (result) => {}
-        )*/
+
     }
 
-    /*useEffect(()=> {
-        
-        
-    })*/
+    useEffect(()=> {
+        console.log("Use Effect has happened!")
+    },[message])
 
     return (
         <div>
+            <h1>{message}</h1>
             <form onSubmit={handleSubmit}>
                 <input type="email" 
                     value={email}

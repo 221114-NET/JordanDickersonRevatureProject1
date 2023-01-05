@@ -31,7 +31,10 @@ public class Program
 
         // Add services to the container.
 
-        builder.Services.AddControllers();
+        builder.Services.AddControllers(options =>
+        {
+            options.OutputFormatters.Insert(0, new TypeOutputFormatter());
+        });
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
