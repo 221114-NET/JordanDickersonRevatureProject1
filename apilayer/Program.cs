@@ -13,24 +13,26 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         var builder = WebApplication.CreateBuilder(args);
 
         // added cors policies
         builder.Services.AddCors(options =>
-        {
-            options.AddPolicy("FormPolicy",
-            policy =>
-            {
-                policy.WithOrigins("http://localhost:3000/")
-                                .WithMethods("POST");
-            });
+        {   
+            options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy  =>
+                      {
+                          policy.WithOrigins("http://localhost:3000")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                      });
         });
 
         // Add services to the container.
 
         builder.Services.AddControllers();
 
-        builder.Services.AddRazorPages();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
 
@@ -123,9 +125,13 @@ public class Program
 
         app.UseHttpsRedirection();
 
+//----------------Added for Cors---------
+        app.UseStaticFiles();
         app.UseRouting();
 
-        app.UseCors();
+    // must be placed after UseRouting and before UseAuthorization for cors to work
+        app.UseCors(MyAllowSpecificOrigins);
+//--------------------------------------------------
 
         app.UseAuthorization();
         app.UseAuthentication();

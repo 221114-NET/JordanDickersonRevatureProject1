@@ -5,6 +5,7 @@ export default function FormLogIn()
 {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage ] = useState("");
 
     function validateForm()
     {
@@ -15,17 +16,36 @@ export default function FormLogIn()
     {
         event.preventDefault();
 
-        fetch("http://localhost:5255/LogInRequest")
-        .then(res => res.json())
+        const dtoLogIn = {
+            email: email,
+            password: password
+        };
+
+        fetch("http://localhost:5255/api/Request/LogInRequest", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dtoLogIn)
+            }).then((response) => { 
+                if(response.status >= 200 && response.status < 299)
+                {
+                    const promise = response.json();
+                    console.log(promise)
+                }               
+            }).catch(error => console.error('Error: ', error));
+        
+        /*.then(res => res.json())
         .then(
             (result) => {}
-        )
+        )*/
     }
 
-    useEffect(()=> {
+    /*useEffect(()=> {
         
-        .
-    })
+        
+    })*/
 
     return (
         <div>
@@ -33,12 +53,12 @@ export default function FormLogIn()
                 <input type="email" 
                     value={email}
                     autoFocus
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)} 
                     placeholder="Enter your email"
                 />
                 <input type="password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}  
                     placeholder="Enter your password" 
                 />
                 <input type="submit"

@@ -42,16 +42,14 @@ namespace apilayer.Controllers
        }
 
 
-       [EnableCors("FormPolicy")]
        [HttpPost("SignUpRequest")]
        public ActionResult<Employee> SignUpRequest(Employee e)
        {
-            iBusinessClassSignUpRequest.SignUpRequest(e);
-            return Created($"https://localhost:5255/api/employee/getemployee/{e.EmployeeId}", e);    
+            return iBusinessClassSignUpRequest.SignUpRequest(e);
+            //return Created($"https://localhost:5255/api/employee/getemployee/{e.EmployeeId}", e);    
        }
 
 
-        [EnableCors("FormPolicy")]
         [HttpPost("LogInRequest")]
         public ActionResult<DTOToken> LogInRequest(DTOLogInRequest dTOLogInRequest)
         {
