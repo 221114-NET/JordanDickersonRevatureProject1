@@ -31,7 +31,7 @@ export default function FormLogIn()
             }).then((response) => { 
                 if(response.status >= 200 && response.status < 299)
                 {
-                    console.log(response.text())
+                    console.log(response.json())
                 }               
             
                 

@@ -17,7 +17,7 @@ public class TypeOutputFormatter : TextOutputFormatter
         => typeof(DTOToken).IsAssignableFrom(type)
             || typeof(IEnumerable<DTOToken>).IsAssignableFrom(type);
     
-    
+
     public override async Task WriteResponseBodyAsync(
         OutputFormatterWriteContext context, Encoding selectedEncoding)
     {
@@ -39,9 +39,8 @@ public class TypeOutputFormatter : TextOutputFormatter
         await httpContext.Response.WriteAsync(buffer.ToString(), selectedEncoding);
     }
 
-    private static void FormatToken(
-        StringBuilder buffer, DTOToken token, ILogger logger)
-    {
+    private static void FormatToken(StringBuilder buffer, DTOToken token, ILogger logger)
+    {   
         buffer.AppendLine($"Token :{token.Token};");
 
         logger.LogInformation("Writing Token " , token.Token);
